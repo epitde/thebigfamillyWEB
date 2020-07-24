@@ -11,24 +11,21 @@
 |
 */
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'Admin\DashboardController@index')->name('dashboard');
-});
-
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'Admin\DashboardController@index')->name('dashboard');
+Route::prefix('/admin')->namespace('Admin')->group(function () {
+    Route::get('/', 'DashboardController@index')->name('admin.home');
 
-Route::get('/admin', 'AdminController@index');
-
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
+    Route::get('/languages', 'LanguageController@index')->name('admin.languages');
+    Route::get('/languages/add', 'LanguageController@add')->name('admin.languages.add');
+    Route::post('/languages/store', 'LanguageController@store')->name('admin.languages.store');
 });
 
-Route::resource('translate', 'API\Lang\TranslateController');
-Route::get('/de/translate', 'API\Lang\TranslateController@germanIndex')->name('translate-de');
-Route::get('/ca/translate', 'API\Lang\TranslateController@catalanIndex')->name('translate-ca');
-Route::get('/change/data/en', 'API\Lang\TranslateController@changeDataEn')->name('change-data-en');
-Route::get('/change/data/de', 'API\Lang\TranslateController@changeDataDe')->name('change-data-de');
-Route::get('/change/data/ca', 'API\Lang\TranslateController@changeDataCa')->name('change-data-ca');
+Route::prefix('/')->namespace('API\Lang')->group(function () {
+    Route::resource('translate', 'TranslateController');
+    Route::get('/de/translate', 'TranslateController@germanIndex')->name('translate-de');
+    Route::get('/ca/translate', 'TranslateController@catalanIndex')->name('translate-ca');
+    Route::get('/change/data/en', 'TranslateController@changeDataEn')->name('change-data-en');
+    Route::get('/change/data/de', 'TranslateController@changeDataDe')->name('change-data-de');
+    Route::get('/change/data/ca', 'TranslateController@changeDataCa')->name('change-data-ca');
+});

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\Lang;
 
 use Illuminate\Http\Request;
 
-class TranslateController
+class TranslateController extends PermissionController
 {
 
     /**
@@ -19,7 +19,7 @@ class TranslateController
 
         return view('admin.translate_en', ['langDataEN' => $langDataEN]);
     }
-   
+
 
     public function germanIndex()
     {
@@ -30,7 +30,6 @@ class TranslateController
         $langDataEN = json_decode($jsonString, true);
 
         return view('admin.translate_de', ['langDataDE' => $langDataDE], ['langDataEN' => $langDataEN]);
-        
     }
 
     public function catalanIndex()
@@ -42,7 +41,6 @@ class TranslateController
         $langDataEN = json_decode($jsonString, true);
 
         return view('admin.translate_ca', ['langDataCA' => $langDataCA], ['langDataEN' => $langDataEN]);
-        
     }
 
     /**
@@ -93,23 +91,21 @@ class TranslateController
         file_put_contents(base_path('resources/Applang/ca.json'), $newJsonString);
     }
 
-    public function getLangAvailable(Request $request){
-        
+    public function getLangAvailable(Request $request)
+    {
+
         return json_encode([
-            ['name'=>'Catalan','code'=>'ca'],
-            ['name'=>'English','code'=>'en'],
-            ['name'=>'German','code'=>'de']
-            
-            
+            ['name' => 'Catalan', 'code' => 'ca'],
+            ['name' => 'English', 'code' => 'en'],
+            ['name' => 'German', 'code' => 'de']
+
+
         ]);
-      
     }
 
-    public function getTranslate(Request $request){
-        $jsonString = file_get_contents(base_path('resources/Applang/'.$request->id.'.json')); 
+    public function getTranslate(Request $request)
+    {
+        $jsonString = file_get_contents(base_path('resources/Applang/' . $request->id . '.json'));
         return $jsonString;
-      
     }
 }
-
-

@@ -233,8 +233,13 @@ return [
     'menu' => [
         [
             'text'        => 'Dashboard',
-            'url'         => 'dashboard',
+            'url'         => 'admin',
             'icon'        => 'fas fa-tachometer-alt',
+        ],
+        [
+            'text'        => 'Languages',
+            'url'         => 'admin/languages',
+            'icon'        => 'fa fa-language',
         ],
         [
             'text'        => 'Translations',
