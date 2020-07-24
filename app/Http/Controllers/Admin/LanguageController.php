@@ -28,7 +28,7 @@ class LanguageController extends PermissionController
     public function store(Request $request)
     {
         if ($request->has('image')) {
-            $request->flag = ImageFacade::up($request->file('image'))['data'];
+            $request['flag'] = ImageFacade::up($request->file('image'))['data'];
 
             $language = LanguageFacade::create($request->all());
             LanguageFacade::createJsonFile($language);

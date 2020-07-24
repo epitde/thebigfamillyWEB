@@ -1,10 +1,11 @@
 @extends('adminlte::page')
-@section('title', 'Translation : English to Catalan')
+@section('title', 'Translation : English to '{{$language->name}})
 @section('content_header')
-<h3>Translation : English to Catalan</h3>
+<h3>Translation : English to {{$language->name}}</h3>
 @stop
 @section('content')
 <div class="row">
+    @if ($langDataEN)
     <div class="col-lg-5 col-xs-6 mr-5">
         <!-- small box -->
         <div class="small-box bg-aqua">
@@ -134,6 +135,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="col-lg-5 col-xs-6 ml-5">
         <!-- small box -->
         <div class="small-box bg-aqua">
@@ -143,20 +145,20 @@
                     <thead>
                         <tr>
                             <th scope="col" style="display:none">STRING</th>
-                            <th scope="col">CA VALUE</th>
+                            <th scope="col">{{$language->short_code}} VALUE</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($langDataCA['GENERAL'] as $key => $general)
+                        @foreach ($langData['GENERAL'] as $key => $general)
                         <tr>
                             <th scope="row" style="display:none">{{$key}}</th>
                             <td>
                                 <input id="general_{{$key}}" type="text" class="form-control" value="{{$general}}">
                             </td>
                             <td>
-                                <a id="ca_save_btn_{{$key}}GENERAL" class="btn btn-primary btn-sm"
-                                    href="javascript:void(0)" data-toggle="tooltip" title="Update CA value"
+                                <a id="save_btn_{{$key}}GENERAL" class="btn btn-primary btn-sm"
+                                    href="javascript:void(0)" data-toggle="tooltip" title="Update value"
                                     onclick="changeData('{{$key}}', 'general_{{$key}}', 'GENERAL')">
                                     Save
                                 </a>
@@ -172,20 +174,20 @@
                     <thead>
                         <tr>
                             <th scope="col" style="display:none">STRING</th>
-                            <th scope="col">CA VALUE</th>
+                            <th scope="col">{{$language->short_code}} VALUE</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($langDataCA['HOME'] as $key => $home)
+                        @foreach ($langData['HOME'] as $key => $home)
                         <tr>
                             <th scope="row" style="display:none">{{$key}}</th>
                             <td>
                                 <input id="home_{{$key}}" type="text" class="form-control" value="{{$home}}">
                             </td>
                             <td>
-                                <a id="ca_save_btn_{{$key}}HOME" class="btn btn-primary btn-sm"
-                                    href="javascript:void(0)" data-toggle="tooltip" title="Update CA value"
+                                <a id="save_btn_{{$key}}HOME" class="btn btn-primary btn-sm" href="javascript:void(0)"
+                                    data-toggle="tooltip" title="Update value"
                                     onclick="changeData('{{$key}}', 'home_{{$key}}', 'HOME')">
                                     Save
                                 </a>
@@ -201,20 +203,20 @@
                     <thead>
                         <tr>
                             <th scope="col" style="display:none">STRING</th>
-                            <th scope="col">CA VALUE</th>
+                            <th scope="col">{{$language->short_code}} VALUE</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($langDataCA['LOGIN'] as $key => $login)
+                        @foreach ($langData['LOGIN'] as $key => $login)
                         <tr>
                             <th scope="row" style="display:none">{{$key}}</th>
                             <td>
                                 <input id="login_{{$key}}" type="text" class="form-control" value="{{$login}}">
                             </td>
                             <td>
-                                <a id="ca_save_btn_{{$key}}LOGIN" class="btn btn-primary btn-sm"
-                                    href="javascript:void(0)" data-toggle="tooltip" title="Update CA value"
+                                <a id="save_btn_{{$key}}LOGIN" class="btn btn-primary btn-sm" href="javascript:void(0)"
+                                    data-toggle="tooltip" title="Update value"
                                     onclick="changeData('{{$key}}', 'login_{{$key}}', 'LOGIN')">
                                     Save
                                 </a>
@@ -230,20 +232,20 @@
                     <thead>
                         <tr>
                             <th scope="col" style="display:none">STRING</th>
-                            <th scope="col">CA VALUE</th>
+                            <th scope="col">{{$language->short_code}} VALUE</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($langDataCA['POST'] as $key => $post)
+                        @foreach ($langData['POST'] as $key => $post)
                         <tr>
                             <th scope="row" style="display:none">{{$key}}</th>
                             <td>
                                 <input id="post_{{$key}}" type="text" class="form-control" value="{{$post}}">
                             </td>
                             <td>
-                                <a id="ca_save_btn_{{$key}}POST" class="btn btn-primary btn-sm"
-                                    href="javascript:void(0)" data-toggle="tooltip" title="Update CA value"
+                                <a id="save_btn_{{$key}}POST" class="btn btn-primary btn-sm" href="javascript:void(0)"
+                                    data-toggle="tooltip" title="Update value"
                                     onclick="changeData('{{$key}}', 'post_{{$key}}', 'POST')">
                                     Save
                                 </a>
@@ -273,21 +275,22 @@
     function changeData(key, id, array_key) {
         value = $('#' + id).val();
         $.ajax({
-            url: "{{ route('change-data-ca') }}",
+            url: "{{ route('api.translate.edit') }}",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: 'GET',
             data: {
+                'id': "{{$language->id}}".
                 'key': key,
                 'value': value,
                 'array_key': array_key
             },
             success: function (response) {
-                $('#ca_save_btn_' + key + array_key).html("Saved").removeClass('btn-primary').addClass(
+                $('#save_btn_' + key + array_key).html("Saved").removeClass('btn-primary').addClass(
                     'btn-success');
                 setTimeout(() => {
-                    $('#ca_save_btn_' + key + array_key).html("Save").removeClass('btn-success')
+                    $('#save_btn_' + key + array_key).html("Save").removeClass('btn-success')
                         .addClass('btn-primary');
                 }, 2000);
             }

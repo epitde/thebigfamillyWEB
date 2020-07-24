@@ -96,8 +96,8 @@ class LanguageService
         $json_data = json_encode($data);
 
         $file = $language->short_code . '.json';
-        $destinationPath = base_path('resources/Applang');
+        $destinationPath = base_path('resources\Applang');
 
-        File::put($destinationPath . $file, $json_data);
+        file_put_contents($destinationPath . '/' . $file, $json_data);
     }
 }

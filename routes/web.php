@@ -22,10 +22,6 @@ Route::prefix('/admin')->namespace('Admin')->group(function () {
 });
 
 Route::prefix('/')->namespace('API\Lang')->group(function () {
-    Route::resource('translate', 'TranslateController');
-    Route::get('/de/translate', 'TranslateController@germanIndex')->name('translate-de');
-    Route::get('/ca/translate', 'TranslateController@catalanIndex')->name('translate-ca');
-    Route::get('/change/data/en', 'TranslateController@changeDataEn')->name('change-data-en');
-    Route::get('/change/data/de', 'TranslateController@changeDataDe')->name('change-data-de');
-    Route::get('/change/data/ca', 'TranslateController@changeDataCa')->name('change-data-ca');
+    Route::get('/translate/{id}', 'TranslateController@index')->name('api.translate');
+    Route::get('/translate/edit', 'TranslateController@edit')->name('api.translate.edit');
 });
