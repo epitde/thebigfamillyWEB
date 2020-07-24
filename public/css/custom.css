@@ -1,0 +1,15 @@
+.mt-2, .my-2 {
+    margin-top: 1.5em !important;
+    color: red !important;
+  }
+
+.language-header {
+  background-color: lightblue;
+  padding: 20px 20px;
+}
+
+.language-inactive {
+  background-color: gray;
+  padding: 20px 20px;
+}
+
