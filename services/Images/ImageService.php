@@ -2,9 +2,7 @@
 
 namespace services\Images;
 
-use services\facade\FileFacade;
 use Illuminate\Support\Facades\Config;
-use Intervention\Image\ImageManager;
 
 class ImageService
 {
@@ -19,27 +17,13 @@ class ImageService
     {
 
         if ($image) {
-            //get filename with extension
-            $filename_with_extension = $image->getClientOriginalName();
+            //Generate image name to store
+            $image_name = md5(date('yyyymmddhhss') . rand()) . '.' . $image->getClientOriginalExtension();
 
-            //get filename without extension
-            $filename = pathinfo($filename_with_extension, PATHINFO_FILENAME);
-
-            //get file extension
-            $extension = $image->getClientOriginalExtension();
-
-            //filename to store
-            $filename_to_store = FileFacade::makeName($image);
-
-            // dd(public_path($this->upload_path) . '/');
             //Upload File
-            $image->move(public_path($this->upload_path) . '/', $filename_to_store);
+            $image->move(public_path($this->upload_path) . '/', $image_name);
 
-            $manager = new ImageManager(array('driver' => Config::get('images.driver')));
-
-            $img = $manager->make(public_path($this->upload_path . '/' . $filename_to_store));
-
-            return ['status' => 1, 'data' => $filename_to_store];
+            return ['status' => 1, 'data' => $image_name];
         }
         return ['status' => 0, 'data' => ''];
     }
