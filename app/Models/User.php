@@ -12,13 +12,14 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, Notifiable, HasRoles;
 
+    const USER_ROLES = ['ADMIN' => 1, 'GENERAL' => 2, 'MODERATOR' => 3, 'TRANSLATOR' => 4];
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name','surname', 'email', 'password','type'
+        'name', 'surname', 'email', 'password', 'type', 'user_role', 'nick_name'
     ];
 
     /**
@@ -39,11 +40,18 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    protected function getOrganizationProfile(){
+    protected function getOrganizationProfile()
+    {
         return $this->hasMany(OrganizationProfile::class);
     }
 
-    protected function getGeneralProfile(){
+    protected function getGeneralProfile()
+    {
         return $this->hasOne(GeneralProfile::class);
+    }
+
+    public function language()
+    {
+        return $this->hasMany('App\Models\Language', 'user_id');
     }
 }

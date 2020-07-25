@@ -9,11 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "calcinai/php-imagick": "^0.1.2",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.5",
-        "jeroennoten/laravel-adminlte": "^3.4",
+        "intervention/image": "^2.5",
         "laravel/framework": "^6.2",
         "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
@@ -40,7 +41,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "services\\": "services/"
         },
         "classmap": [
             "database/seeds",

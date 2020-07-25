@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,13 +24,36 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    public function redirectTo()
+    {
+
+        // User role
+        $role = Auth::user()->user_role;
+
+        // Check user role
+        switch ($role) {
+            case User::USER_ROLES['ADMIN']:
+                return '/admin';
+                break;
+            case User::USER_ROLES['GENERAL']:
+                return '/general';
+                break;
+            case User::USER_ROLES['MODERATOR']:
+                return '/moderator';
+                break;
+            case User::USER_ROLES['TRANSLATOR']:
+                return '/translator';
+                break;
+            default:
+                return '/login';
+                break;
+        }
+    }
 
     /**
      * Create a new controller instance.

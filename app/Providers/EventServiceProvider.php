@@ -21,6 +21,12 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Auth\Events\Verified' => [
             'App\Listeners\LogVerifiedUser',
         ],
+        'App\Events\AssignTranslatorEvent' => [
+            'App\Listeners\AssignTranslatorListener',
+        ],
+        'App\Events\NotifyAdminOnRejectEvent' => [
+            'App\Listeners\NotifyAdminOnRejectListener',
+        ],
     ];
 
     /**

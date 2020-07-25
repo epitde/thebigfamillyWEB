@@ -11,24 +11,39 @@
 |
 */
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'Admin\DashboardController@index')->name('dashboard');
-});
-
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'Admin\DashboardController@index')->name('dashboard');
+Route::prefix('/admin')->namespace('Admin')->group(function () {
+    Route::get('/', 'DashboardController@index')->name('admin.home');
 
-Route::get('/admin', 'AdminController@index');
-
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
+    Route::get('/languages', 'LanguageController@index')->name('admin.languages');
+    Route::get('/languages/add', 'LanguageController@add')->name('admin.languages.add');
+    Route::post('/languages/store', 'LanguageController@store')->name('admin.languages.store');
+    Route::get('/languages/edit/{id}', 'LanguageController@edit')->name('admin.languages.edit');
+    Route::post('/languages/update', 'LanguageController@update')->name('admin.languages.update');
+    Route::get('/languages/delete/{id}', 'LanguageController@delete')->name('admin.languages.delete');
 });
 
-Route::resource('translate', 'API\Lang\TranslateController');
-Route::get('/de/translate', 'API\Lang\TranslateController@germanIndex')->name('translate-de');
-Route::get('/ca/translate', 'API\Lang\TranslateController@catalanIndex')->name('translate-ca');
-Route::get('/change/data/en', 'API\Lang\TranslateController@changeDataEn')->name('change-data-en');
-Route::get('/change/data/de', 'API\Lang\TranslateController@changeDataDe')->name('change-data-de');
-Route::get('/change/data/ca', 'API\Lang\TranslateController@changeDataCa')->name('change-data-ca');
+Route::prefix('/translator')->namespace('Translator')->group(function () {
+    Route::get('/', 'DashboardController@index')->name('translator.home');
+});
+
+Route::prefix('/moderator')->namespace('Moderator')->group(function () {
+    Route::get('/', 'DashboardController@index')->name('moderator.home');
+});
+
+Route::prefix('/general')->namespace('General')->group(function () {
+    Route::get('/', 'DashboardController@index')->name('general.home');
+});
+
+Route::prefix('/')->namespace('API\Lang')->group(function () {
+    Route::get('/translate/{id}', 'TranslateController@index')->name('api.translate');
+    Route::get('/edit/translate', 'TranslateController@editJsonFile')->name('api.translate.edit');
+});
+
+Route::prefix('/')->namespace('PublicArea')->group(function () {
+
+    Route::get('/', 'HomeController@index')->name('public.home');
+
+    Route::get('emails/reject/request/{user_id}/{language_id}', 'HomeController@rejectRequest')->name('translator-reject-request');
+});

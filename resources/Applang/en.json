@@ -1,1 +1,41 @@
-{"GENERAL":{"ads":"ads","categories":"Category","recommended":"Recommended","services":"Services","orgnisation":"Organisation","new_post":"Neuer Beitrag"},"HOME":{"title":"Home","greeting":"Hi {{name}}! Welcome!!"},"LOGIN":{"login":"Login","user_type":"User Type","personal":"Personal","organization":"Organization","register":"Register","email":"Email","password":"Password","sign_up":"Sign up","dont_have_a_account":"Don't have an account? ","registration":"Registration","name":"Name","surname":"Surname","confirm_password":"Confirm Password","check_to_process_registration":"Check to process registration.","already_have_an_account":"Already have an account? "},"POST":{"login":"Login","user_type":"User Type","personal":"Personal","organization":"Organization","categories":"Categories","search_for_anything":"Search for anything...","search_for_location":"Search for location...","post_ads":"Post Ads"}}
+{
+    "GENERAL": {
+        "ads": "ads",
+        "categories": "Category",
+        "recommended": "Recommended",
+        "services": "Services",
+        "orgnisation": "Organisation",
+        "new_post": "Neuer Beitrag"
+    },
+    "HOME": {
+        "title": "Home",
+        "greeting": "Hi {{name}}! Welcome!!"
+    },
+    "LOGIN": {
+        "login": "Login",
+        "user_type": "User Type",
+        "personal": "Personal",
+        "organization": "Organization",
+        "register": "Register",
+        "email": "Email",
+        "password": "Password",
+        "sign_up": "Sign up",
+        "dont_have_a_account": "Don't have an account? ",
+        "registration": "Registration",
+        "name": "Name",
+        "surname": "Surname",
+        "confirm_password": "Confirm Password",
+        "check_to_process_registration": "Check to process registration.",
+        "already_have_an_account": "Already have an account? "
+    },
+    "POST": {
+        "login": "Login",
+        "user_type": "User Type",
+        "personal": "Personal",
+        "organization": "Organization",
+        "categories": "Categories",
+        "search_for_anything": "Search for anything...",
+        "search_for_location": "Search for location...",
+        "post_ads": "Post Ads"
+    }
+}

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -26,8 +29,30 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    public function redirectTo()
+    {
+        // User role
+        $role = Auth::user()->user_role;
 
+        // Check user role
+        switch ($role) {
+            case User::USER_ROLES['ADMIN']:
+                return '/admin';
+                break;
+            case User::USER_ROLES['GENERAL']:
+                return '/general';
+                break;
+            case User::USER_ROLES['MODERATOR']:
+                return '/moderator';
+                break;
+            case User::USER_ROLES['TRANSLATOR']:
+                return '/translator';
+                break;
+            default:
+                return '/login';
+                break;
+        }
+    }
     /**
      * Create a new controller instance.
      *
