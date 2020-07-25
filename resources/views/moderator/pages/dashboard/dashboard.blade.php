@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('moderator.layouts.app')
 @section('title', 'Dashboard | Lara Admin')
 
 @section('content')
@@ -14,11 +14,7 @@
         <div class="col-lg-3 col-xs-6">
             <div class="card">
                 <div class="card-body">
-                    <h3>{{ $users }}</h3>
-                    <p>Users</p>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
+                    <h3>Welcome</h3>
                     <a href="/user" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>

@@ -49,4 +49,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(GeneralProfile::class);
     }
+
+    public function language()
+    {
+        return $this->hasMany('App\Models\Language', 'user_id');
+    }
 }

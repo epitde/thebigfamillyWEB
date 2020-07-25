@@ -24,7 +24,6 @@ class TranslationValidator
                 return redirect(route('general.home'));
             } else if (Auth::user()->user_role == User::USER_ROLES['MODERATOR']) {
                 return redirect(route('moderator.home'));
-            } else {
             }
         }
         return $next($request);

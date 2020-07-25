@@ -14,6 +14,16 @@
 
     {{-- Load CSS files --}}
     @include('admin.includes.css')
+
+    {{-- get the current url --}}
+    @php
+    $active_url = Route::currentRouteName();
+    $active_url_path_id = "";
+
+    if ($active_url == 'api.translate') {
+    $active_url_path_id = Route::getCurrentRoute()->parameters['id'];
+    }
+    @endphp
 </head>
 
 <body>

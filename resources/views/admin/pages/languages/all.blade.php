@@ -39,9 +39,11 @@
                                 <td>{{$language->short_code}}</td>
 
                                 <td>
-                                    <img src="{{asset('uploads/'.$language->flag)}}" style="max-width:23%">
+                                    <img src="{{$language->flag?asset('uploads/'.$language->flag):''}}"
+                                        style="max-width:23%">
                                 </td>
-                                <td>{{$language->user->name}}&nbsp;{{$language->user->surname}}</td>
+                                <td>{{$language->user?$language->user->name:''}}&nbsp;{{$language->user?$language->user->surname:''}}
+                                </td>
                                 <td class="text-left">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-light btn-icon-only text-light" href="#" role="button"
@@ -49,12 +51,14 @@
                                             <i class="fa fa-ellipsis-v"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" onclick="" href="">
-                                                <i class="fa fa-pencil-square-o"></i>
+                                            <a class="dropdown-item" onclick=""
+                                                href="{{route('admin.languages.edit', $language->id)}}">
+                                                <i class="fa fa-pencil-square-o text-primary"></i>
                                                 Edit
                                             </a>
-                                            <a class="dropdown-item" href="javascript:void(0)">
-                                                <i class="fa fa-trash"></i>
+                                            <a class="dropdown-item"
+                                                href="{{route('admin.languages.delete', $language->id)}}">
+                                                <i class="fa fa-trash text-danger"></i>
                                                 Delete
                                             </a>
                                         </div>

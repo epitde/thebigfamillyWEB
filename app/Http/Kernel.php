@@ -67,7 +67,10 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'AdminValidation' => \App\Http\Middleware\AdminValidation::class,
-        'TranslationValidator' => \App\Http\Middleware\TranslationValidator::class
+        'TranslationValidator' => \App\Http\Middleware\TranslationValidator::class,
+        'TranslatorValidation' => \App\Http\Middleware\TranslatorValidation::class,
+        'GeneralValidation' => \App\Http\Middleware\GeneralValidation::class,
+        'ModeratorValidation' => \App\Http\Middleware\ModeratorValidation::class,
     ];
 
     /**

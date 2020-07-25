@@ -31,7 +31,6 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
-
         // User role
         $role = Auth::user()->user_role;
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use services\facade\UserFacade;
 
 class DashboardController extends PermissionController
 {
@@ -16,7 +17,8 @@ class DashboardController extends PermissionController
      */
     public function index()
     {
-        $users = User::count();
-        return view('admin.dashboard', ['users' => $users]);
+        $response['users'] = UserFacade::getAllUsers();
+
+        return view('admin.pages.dashboard.dashboard')->with($response);
     }
 }
