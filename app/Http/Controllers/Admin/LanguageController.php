@@ -15,14 +15,14 @@ class LanguageController extends PermissionController
     {
         $response['languages'] = LanguageFacade::getAllLanguages();
 
-        return view('admin.languages.all')->with($response);
+        return view('admin.pages.languages.all')->with($response);
     }
 
     public function add()
     {
         $response['users'] = UserFacade::getUsersByType(User::USER_ROLES['TRANSLATOR']);
 
-        return view('admin.languages.add')->with($response);
+        return view('admin.pages.languages.add')->with($response);
     }
 
     public function store(Request $request)
