@@ -19,7 +19,7 @@ class TranslateController extends PermissionController
     {
         $response['language'] = LanguageFacade::get($id);
 
-        if (!($response['language'] && $response['language']->user_id == Auth::user()->id)) {
+        if (Auth::user()->user_role != User::USER_ROLES['ADMIN'] && !($response['language'] && $response['language']->user_id == Auth::user()->id)) {
             return redirect()->back()->with('alert-danger', 'Something went wrong');
         }
 
