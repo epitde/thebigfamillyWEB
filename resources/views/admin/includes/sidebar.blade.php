@@ -22,6 +22,12 @@ $languages = services\facade\LanguageFacade::getAllLanguages();
                     <p>Dashboard</p>
                 </a>
             </li>
+            <li class="{{$active_url=='admin.users'?'active':'' }}">
+                <a href="{{route('admin.users')}}">
+                    <i class="fa fa-users"></i>
+                    <p>Users</p>
+                </a>
+            </li>
             <li class="{{$active_url=='admin.languages'?'active':'' }}">
                 <a href="{{route('admin.languages')}}">
                     <i class="fa fa-globe"></i>

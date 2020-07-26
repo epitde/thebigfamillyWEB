@@ -22,6 +22,13 @@ Route::prefix('/admin')->namespace('Admin')->group(function () {
     Route::get('/languages/edit/{id}', 'LanguageController@edit')->name('admin.languages.edit');
     Route::post('/languages/update', 'LanguageController@update')->name('admin.languages.update');
     Route::get('/languages/delete/{id}', 'LanguageController@delete')->name('admin.languages.delete');
+
+    Route::get('/users', 'UserController@index')->name('admin.users');
+    Route::get('/users/add', 'UserController@add')->name('admin.users.add');
+    Route::post('/users/store', 'UserController@store')->name('admin.users.store');
+    Route::get('/users/edit/{id}', 'UserController@edit')->name('admin.users.edit');
+    Route::post('/users/update', 'UserController@update')->name('admin.users.update');
+    Route::get('/users/delete/{id}', 'UserController@delete')->name('admin.users.delete');
 });
 
 Route::prefix('/translator')->namespace('Translator')->group(function () {
