@@ -147,7 +147,7 @@ class LanguageService
         $language = $this->get($id);
 
         $file = $language->short_code . '.json';
-        $destinationPath = base_path('resources\Applang');
+        $destinationPath = base_path('resources/Applang');
 
         unlink($destinationPath . '/' . $file);
 
