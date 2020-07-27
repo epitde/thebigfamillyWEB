@@ -12,3 +12,4 @@ class PermissionController extends Controller
         $this->middleware('AdminValidation');
     }
 }
+ 
