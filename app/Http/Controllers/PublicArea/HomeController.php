@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\PublicArea;
 
 use App\Http\Controllers\Controller;
+use App\facade\LanguageFacade;
+use App\facade\MailFacade;
 use Illuminate\Http\Request;
-use services\facade\LanguageFacade;
-use services\facade\MailFacade;
 
 class HomeController extends Controller
 {

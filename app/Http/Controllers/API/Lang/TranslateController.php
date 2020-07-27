@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\API\Lang;
 
 use App\Models\User;
+use App\facade\LanguageFacade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use services\facade\LanguageFacade;
 use DB;
 use Illuminate\Routing\Controller as BaseController;
 
 class TranslateController extends BaseController
 {
-/**
+    /**
      * Show the profile for the given user.
      *
      * @return
@@ -61,11 +61,11 @@ class TranslateController extends BaseController
     {
 
 
-        $languages = DB::table('languages')->Where([['status',1]])->get();
+        $languages = DB::table('languages')->Where([['status', 1]])->get();
 
         $langArray =  [];
-        foreach($languages as $lang){
-            $langArray[] = ['name'=> $lang->name,'code'=>$lang->short_code,'flag'=>$lang->flag]; 
+        foreach ($languages as $lang) {
+            $langArray[] = ['name' => $lang->name, 'code' => $lang->short_code, 'flag' => $lang->flag];
         }
         return json_encode($langArray);
     }
@@ -74,14 +74,14 @@ class TranslateController extends BaseController
     {
 
         $jsonString = file_get_contents(base_path('resources/Applang/' . $request->id . '.json'));
-        
-        if($request->id!="en"){
+
+        if ($request->id != "en") {
             $jsonStringEn = file_get_contents(base_path('resources/Applang/en.json'));
-            $langSetEn = json_decode($jsonStringEn,true);
-            $langSet = json_decode($jsonString,true);
-            foreach($langSet as $key => $langSection){
-                foreach($langSection as $lngkey => $lang){
-                    if(strlen($lang)==0){
+            $langSetEn = json_decode($jsonStringEn, true);
+            $langSet = json_decode($jsonString, true);
+            foreach ($langSet as $key => $langSection) {
+                foreach ($langSection as $lngkey => $lang) {
+                    if (strlen($lang) == 0) {
                         $langSet[$key][$lngkey] = $langSetEn[$key][$lngkey];
                     }
                 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace services\Languages;
+namespace App\services\Languages;
 
 use App\Models\Language;
-use services\facade\MailFacade;
+use App\facade\MailFacade;
 
 class LanguageService
 {

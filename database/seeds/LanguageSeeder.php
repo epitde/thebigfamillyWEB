@@ -1,7 +1,7 @@
 <?php
 
+use App\facade\LanguageFacade;
 use Illuminate\Database\Seeder;
-use services\facade\LanguageFacade;
 
 class LanguageSeeder extends Seeder
 {

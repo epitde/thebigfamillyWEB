@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\facade\UserFacade;
 use Illuminate\Http\Request;
-use services\facade\UserFacade;
 
 class UserController extends PermissionController
 {
@@ -49,7 +49,7 @@ class UserController extends PermissionController
 
     public function delete($id)
     {
-        UserFacade::delete($id);
+        UserFacade::deleteUser($id);
 
         return redirect()->back()->with('alert-success', "User deleted successfully");
     }

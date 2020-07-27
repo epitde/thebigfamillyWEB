@@ -1,6 +1,6 @@
 <?php
 
-namespace services\Images;
+namespace App\services\Images;
 
 use Illuminate\Support\Facades\Config;
 
