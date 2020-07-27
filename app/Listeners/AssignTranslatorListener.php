@@ -4,10 +4,10 @@ namespace App\Listeners;
 
 use App\Events\AssignTranslatorEvent;
 use App\Mail\AssignTranslatorMail;
+use App\facade\UserFacade;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
-use services\facade\UserFacade;
 
 class AssignTranslatorListener
 {

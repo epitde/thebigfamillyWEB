@@ -1,13 +1,13 @@
 <?php
 
-namespace services\Mails;
+namespace App\services\Mails;
 
 use App\Events\AssignTranslatorEvent;
 use App\Events\NotifyAdminOnRejectEvent;
 use App\Models\Language;
 use App\Models\User;
-use services\facade\LanguageFacade;
-use services\facade\UserFacade;
+use App\facade\LanguageFacade;
+use App\facade\UserFacade;
 
 class MailService
 {
