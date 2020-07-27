@@ -12,3 +12,13 @@
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css">
 @yield('css')
+
+<style>
+    .sidebar .logo1,
+    .off-canvas-sidebar .logo1 {
+        position: relative;
+        padding: 7px 0.7rem;
+        z-index: 4;
+    }
+
+</style>

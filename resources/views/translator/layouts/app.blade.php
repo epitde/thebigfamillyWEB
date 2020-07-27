@@ -21,7 +21,7 @@
     $active_url_path_id = "";
 
     if ($active_url == 'api.translate') {
-    $active_url_path_id = Route::getCurrentRoute()->parameters['id'];
+    $active_url_path_id = Route::getCurrentRoute()->parameters['short_code'];
     }
     @endphp
 </head>

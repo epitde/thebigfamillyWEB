@@ -44,7 +44,7 @@ Route::prefix('/general')->namespace('General')->group(function () {
 });
 
 Route::prefix('/')->namespace('API\Lang')->group(function () {
-    Route::get('/translate/{id}', 'TranslateController@index')->name('api.translate');
+    Route::get('/translate/{short_code}', 'TranslateController@index')->name('api.translate');
     Route::get('/edit/translate', 'TranslateController@editJsonFile')->name('api.translate.edit');
 });
 

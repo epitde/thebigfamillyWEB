@@ -42,6 +42,9 @@
                                     <label for="">User Role</label>
                                     <select class="form-control" name="user_role" id="user_role" required>
                                         <option></option>
+                                        <option value="{{ \app\Models\User::USER_ROLES['ADMIN'] }}">
+                                            Admin
+                                        </option>
                                         <option value="{{ \app\Models\User::USER_ROLES['GENERAL'] }}">
                                             General
                                         </option>
