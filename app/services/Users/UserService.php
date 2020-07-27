@@ -95,4 +95,16 @@ class UserService
         //convert object attributes to array and merge with updated array
         return array_merge($user->toArray(), $data);
     }
+
+    public function deleteUser($id)
+    {
+        $user = $this->get($id);
+
+        foreach ($user->language as $language) {
+            $language->user_id = null;
+            $language->save();
+        }
+
+        $this->delete($id);
+    }
 }
