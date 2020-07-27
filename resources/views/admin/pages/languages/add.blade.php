@@ -31,7 +31,7 @@
                                     <input type="text" class="form-control" id="short_code" name="short_code" required>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-8">
                                 <div class="form-group">
                                     <label for="">Default Translator</label>
                                     <select class="form-control" name="user_id" id="user_id" required>

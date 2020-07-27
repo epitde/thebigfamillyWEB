@@ -153,4 +153,12 @@ class LanguageService
 
         $language->delete();
     }
+
+    public function changeStatus($id)
+    {
+        $language = $this->get($id);
+
+        $language->status = !($language->status);
+        $language->save();
+    }
 }
