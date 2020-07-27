@@ -23,6 +23,8 @@ Route::fallback(function() {
 });
 
 //translate
-Route::get('/translate/{id}','API\Lang\TranslateController@getTranslate');
-
-Route::post('/language/list','API\Lang\TranslateController@getLangAvailable');
+Route::prefix('/')->namespace('API')->group(function () {
+ 
+    Route::get('/translate/{id}','Lang\TranslateController@getTranslate');
+    Route::post('/language/list','Lang\TranslateController@getLangAvailable');
+});
