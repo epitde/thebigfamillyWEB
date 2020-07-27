@@ -22,6 +22,7 @@ Route::prefix('/admin')->namespace('Admin')->group(function () {
     Route::get('/languages/edit/{id}', 'LanguageController@edit')->name('admin.languages.edit');
     Route::post('/languages/update', 'LanguageController@update')->name('admin.languages.update');
     Route::get('/languages/delete/{id}', 'LanguageController@delete')->name('admin.languages.delete');
+    Route::get('/languages/change-status/{id}', 'LanguageController@changeStatus')->name('admin.languages.change-status');
 
     Route::get('/users', 'UserController@index')->name('admin.users');
     Route::get('/users/add', 'UserController@add')->name('admin.users.add');

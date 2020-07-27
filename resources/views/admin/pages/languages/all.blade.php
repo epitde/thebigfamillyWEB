@@ -23,8 +23,9 @@
                                 <th>#</th>
                                 <th>Title</th>
                                 <th>Short Code</th>
-                                <th>Flag</th>
+                                <th style="width: 120px;">Flag</th>
                                 <th>Default Translator</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -38,11 +39,23 @@
 
                                 <td>{{$language->short_code}}</td>
 
-                                <td>
+                                <td style="width: 120px;">
                                     <img src="{{$language->flag?asset('uploads/'.$language->flag):''}}"
-                                        style="max-width:23%">
+                                        style="max-width:100%">
                                 </td>
-                                <td>{{$language->user?$language->user->name:''}}&nbsp;{{$language->user?$language->user->surname:''}}
+                                <td>
+                                    {{$language->user?$language->user->name:''}}&nbsp;{{$language->user?$language->user->surname:''}}
+                                </td>
+                                <td>
+                                    @switch($language->status)
+                                    @case(App\Models\Language::STATUS['ACTIVE'])
+                                    <span class="badge badge-success">Active</span>
+                                    @break
+                                    @case(App\Models\Language::STATUS['INACTIVE'])
+                                    <span class="badge badge-danger">Inactive</span>
+                                    @break
+                                    @default
+                                    @endswitch
                                 </td>
                                 <td class="text-left">
                                     <div class="dropdown">
@@ -60,6 +73,16 @@
                                                 href="{{route('admin.languages.delete', $language->id)}}">
                                                 <i class="fa fa-trash text-danger"></i>
                                                 Delete
+                                            </a>
+                                            <a class="dropdown-item"
+                                                href="{{route('admin.languages.change-status', $language->id)}}">
+                                                @if($language->status == App\Models\Language::STATUS['INACTIVE'])
+                                                <i class="fa fa-check text-success"></i>
+                                                Activate
+                                                @else
+                                                <i class="fa fa-times text-warning"></i>
+                                                Deactivate
+                                                @endif
                                             </a>
                                         </div>
                                     </div>

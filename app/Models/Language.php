@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Language extends Model
 {
+
+    const STATUS = ['ACTIVE' => 1, 'INACTIVE' => 0];
+
     protected $fillable = [
         'name',
         'flag',
         'short_code',
-        'user_id'
+        'user_id',
+        'status'
     ];
 
     public function user()

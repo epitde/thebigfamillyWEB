@@ -64,4 +64,11 @@ class LanguageController extends PermissionController
 
         return redirect()->back()->with('alert-success', "Language deleted successfully");
     }
+
+    public function changeStatus($id)
+    {
+        LanguageFacade::changeStatus($id);
+
+        return redirect()->back()->with('alert-success', "Status changed successfully");
+    }
 }
