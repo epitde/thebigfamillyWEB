@@ -161,4 +161,20 @@ class LanguageService
         $language->status = !($language->status);
         $language->save();
     }
+
+    public function getCompletedPercentage($language_json)
+    {
+        $completed_count = 0;
+        $total = 0;
+
+        foreach ($language_json as $array) {
+            foreach ($array as $item) {
+                if ($item) {
+                    $completed_count++;
+                }
+                $total++;
+            }
+        }
+        return ($completed_count / $total) * 100;
+    }
 }

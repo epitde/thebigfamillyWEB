@@ -29,6 +29,8 @@ class TranslateController extends PermissionController
         $jsonString = file_get_contents(base_path('resources/Applang/en.json'));
         $response['langDataEN'] = json_decode($jsonString, true);
 
+        $response['total_completed_percentage'] = LanguageFacade::getCompletedPercentage($response['langData']);
+
         if (Auth::user()->user_role == User::USER_ROLES['ADMIN']) {
             return view('admin.pages.translate.translate')->with($response);
         } else {
