@@ -176,6 +176,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        App\Providers\ImageServiceProvider::class,
+        App\Providers\LanguageServiceProvider::class,
+        App\Providers\MailServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
 
     ],
 
@@ -227,6 +231,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'ImageFacade' => App\facade\ImageFacade::class,
+        'MailFacade' => App\facade\MailFacade::class,
+        'UserFacade' => App\facade\UserFacade::class,
+        'LanguageFacade' => App\facade\LanguageFacade::class,
 
     ],
 

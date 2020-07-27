@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use services\facade\UserFacade;
+use App\facade\UserFacade;
 
 class DashboardController extends PermissionController
 {

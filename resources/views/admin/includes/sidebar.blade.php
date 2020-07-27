@@ -1,5 +1,5 @@
 @php
-$languages = services\facade\LanguageFacade::getAllLanguages();
+$languages = \App\facade\LanguageFacade::getAllLanguages();
 @endphp
 
 <div class="sidebar" data-color="white" data-active-color="danger">

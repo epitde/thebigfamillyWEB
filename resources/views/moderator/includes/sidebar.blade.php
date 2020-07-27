@@ -1,7 +1,3 @@
-@php
-$languages = services\facade\LanguageFacade::getAllLanguages();
-@endphp
-
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo1 mt-1">
         <a href="{{route('public.home')}}" class="simple-text logo-mini logo-normal" style="min-width: 80%">

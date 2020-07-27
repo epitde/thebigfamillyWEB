@@ -12,32 +12,52 @@
 </div>
 <div class="container mt-2">
     <div class="row">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item mx-1">
-                <a class="nav-link active" id="pills-general-tab" data-toggle="pill" href="#pills-general" role="tab"
-                    aria-controls="pills-general" aria-selected="true">
-                    <strong>General</strong>
-                </a>
-            </li>
-            <li class="nav-item mx-1">
-                <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-                    aria-controls="pills-home" aria-selected="false">
-                    <strong>Home</strong>
-                </a>
-            </li>
-            <li class="nav-item mx-1">
-                <a class="nav-link" id="pills-login-tab" data-toggle="pill" href="#pills-login" role="tab"
-                    aria-controls="pills-login" aria-selected="false">
-                    <strong>Login</strong>
-                </a>
-            </li>
-            <li class="nav-item mx-1">
-                <a class="nav-link" id="pills-post-tab" data-toggle="pill" href="#pills-post" role="tab"
-                    aria-controls="pills-post" aria-selected="false">
-                    <strong>Post</strong>
-                </a>
-            </li>
-        </ul>
+        <div class="col-lg-3 col-xs-6">
+            <div class="card shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Completed Percentage
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{number_format($total_completed_percentage, 2)}}%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item mx-1">
+                    <a class="nav-link active" id="pills-general-tab" data-toggle="pill" href="#pills-general"
+                        role="tab" aria-controls="pills-general" aria-selected="true">
+                        <strong>General</strong>
+                    </a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                        aria-controls="pills-home" aria-selected="false">
+                        <strong>Home</strong>
+                    </a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link" id="pills-login-tab" data-toggle="pill" href="#pills-login" role="tab"
+                        aria-controls="pills-login" aria-selected="false">
+                        <strong>Login</strong>
+                    </a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link" id="pills-post-tab" data-toggle="pill" href="#pills-post" role="tab"
+                        aria-controls="pills-post" aria-selected="false">
+                        <strong>Post</strong>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="row mt-3">
         <div class="col-lg-9">
