@@ -41,7 +41,7 @@
 
                                 <td style="width: 120px;">
                                     <img src="{{$language->flag?asset('uploads/'.$language->flag):''}}"
-                                        style="max-width:100%">
+                                        style="max-width:40%">
                                 </td>
                                 <td>
                                     {{$language->user?$language->user->name:''}}&nbsp;{{$language->user?$language->user->surname:''}}
