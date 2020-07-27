@@ -11,15 +11,14 @@ use Illuminate\Routing\Controller as BaseController;
 
 class TranslateController extends BaseController
 {
-
-    /**
+/**
      * Show the profile for the given user.
      *
      * @return
      */
-    public function index($id)
+    public function index($short_code)
     {
-        $response['language'] = LanguageFacade::get($id);
+        $response['language'] = LanguageFacade::getByShortCode($short_code);
 
         if (Auth::user()->user_role != User::USER_ROLES['ADMIN'] && !($response['language'] && $response['language']->user_id == Auth::user()->id)) {
             return redirect()->back()->with('alert-danger', 'Something went wrong');
@@ -28,11 +27,10 @@ class TranslateController extends BaseController
         $jsonString = file_get_contents(base_path('resources/Applang/' . $response['language']->short_code . '.json'));
         $response['langData'] = json_decode($jsonString, true);
 
-        $response['langDataEN'] = "";
-        if ($response['language']->short_code != "en") {
-            $jsonString = file_get_contents(base_path('resources/Applang/en.json'));
-            $response['langDataEN'] = json_decode($jsonString, true);
-        }
+        $jsonString = file_get_contents(base_path('resources/Applang/en.json'));
+        $response['langDataEN'] = json_decode($jsonString, true);
+
+        $response['total_completed_percentage'] = LanguageFacade::getCompletedPercentage($response['langData']);
 
         if (Auth::user()->user_role == User::USER_ROLES['ADMIN']) {
             return view('admin.pages.translate.translate')->with($response);
