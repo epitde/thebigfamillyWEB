@@ -40,6 +40,9 @@
 
                                 <td>
                                     @switch($user->user_role)
+                                    @case(App\Models\User::USER_ROLES['ADMIN'])
+                                    <span class="badge">Admin</span>
+                                    @break
                                     @case(App\Models\User::USER_ROLES['GENERAL'])
                                     <span class="badge">General</span>
                                     @break

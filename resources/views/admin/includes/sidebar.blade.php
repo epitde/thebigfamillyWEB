@@ -3,15 +3,12 @@ $languages = services\facade\LanguageFacade::getAllLanguages();
 @endphp
 
 <div class="sidebar" data-color="white" data-active-color="danger">
-    <div class="logo">
-        <a href="https://www.creative-tim.com" class="simple-text logo-mini">
-            <div class="logo-image-small">
-                <img src="{{asset('dashboard/img/logo-small.png')}}">
-            </div>
+    <div class="logo1 mt-1">
+        <a href="{{route('public.home')}}" class="simple-text logo-mini logo-normal" style="min-width: 80%">
+            {{-- <div> --}}
+            <img src="{{asset('dashboard/img/logo_translate.png')}}">
+            {{-- </div> --}}
             <!-- <p>CT</p> -->
-        </a>
-        <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-            Creative Tim
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -45,8 +42,9 @@ $languages = services\facade\LanguageFacade::getAllLanguages();
                     <div class="bg-white py-2 pl-3 collapse-inner rounded">
                         <ul class="nav">
                             @foreach ($languages as $language)
-                            <li class="{{$active_url_path_id==$language->id?'active':'' }}">
-                                <a class="nav-link collapse-item" href="{{route('api.translate', $language->id)}}">
+                            <li class="{{$active_url_path_id==$language->short_code?'active':'' }}">
+                                <a class="nav-link collapse-item"
+                                    href="{{route('api.translate', $language->short_code)}}">
                                     <i class="fa fa-circle" style="font-size: 1rem;"></i>{{$language->name}}
                                 </a>
                             </li>

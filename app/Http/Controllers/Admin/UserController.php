@@ -10,7 +10,7 @@ class UserController extends PermissionController
 {
     public function index()
     {
-        $response['users'] = UserFacade::getAllNotAdminUsers();
+        $response['users'] = UserFacade::getAllUsers();
 
         return view('admin.pages.users.all')->with($response);
     }
