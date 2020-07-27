@@ -77,7 +77,7 @@ class AuthController extends BaseController
 
     $user = User::create($data);
     // We know that General User have role id 2
-    $user->assignRole([2]);
+    //$user->assignRole([2]);
     $userData =  $user->toArray();
     unset($userData['roles']);
     //$success = array();

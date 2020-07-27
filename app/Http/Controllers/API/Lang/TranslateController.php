@@ -6,11 +6,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use services\facade\LanguageFacade;
+use DB;
+use Illuminate\Routing\Controller as BaseController;
 
-class TranslateController extends PermissionController
+class TranslateController extends BaseController
 {
-
-    /**
+/**
      * Show the profile for the given user.
      *
      * @return
@@ -59,18 +60,35 @@ class TranslateController extends PermissionController
     public function getLangAvailable(Request $request)
     {
 
-        return json_encode([
-            ['name' => 'Catalan', 'code' => 'ca'],
-            ['name' => 'English', 'code' => 'en'],
-            ['name' => 'German', 'code' => 'de']
 
+        $languages = DB::table('languages')->Where([['status',1]])->get();
 
-        ]);
+        $langArray =  [];
+        foreach($languages as $lang){
+            $langArray[] = ['name'=> $lang->name,'code'=>$lang->short_code,'flag'=>$lang->flag]; 
+        }
+        return json_encode($langArray);
     }
 
     public function getTranslate(Request $request)
     {
+
         $jsonString = file_get_contents(base_path('resources/Applang/' . $request->id . '.json'));
+        
+        if($request->id!="en"){
+            $jsonStringEn = file_get_contents(base_path('resources/Applang/en.json'));
+            $langSetEn = json_decode($jsonStringEn,true);
+            $langSet = json_decode($jsonString,true);
+            foreach($langSet as $key => $langSection){
+                foreach($langSection as $lngkey => $lang){
+                    if(strlen($lang)==0){
+                        $langSet[$key][$lngkey] = $langSetEn[$key][$lngkey];
+                    }
+                }
+            }
+            $jsonString = json_encode($langSet);
+        }
+
         return $jsonString;
     }
 }
