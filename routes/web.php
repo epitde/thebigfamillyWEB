@@ -53,5 +53,7 @@ Route::prefix('/')->namespace('PublicArea')->group(function () {
 
     Route::get('/', 'HomeController@index')->name('public.home');
 
+    Route::get('/verification', 'VerificationController@index')->name('verification.home');
+
     Route::get('emails/reject/request/{user_id}/{language_id}', 'HomeController@rejectRequest')->name('translator-reject-request');
 });

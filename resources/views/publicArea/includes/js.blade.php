@@ -5,4 +5,6 @@
 <script src="{{ asset('publicArea/vendor/modal-video/js/modal-video.js') }}"></script>
 <script src="{{ asset('publicArea/js/front.js') }}"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
+
 @yield('js')

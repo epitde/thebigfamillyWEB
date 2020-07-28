@@ -23,24 +23,34 @@
                     <li class="nav-item px-1">
                         @switch(Auth::user()->user_role)
                         @case(App\Models\User::USER_ROLES['ADMIN'])
-                        <a class="nav-link link-scroll btn btn-primary" href="{{route('admin.home')}}">Dashboard</a>
+                        <a class="nav-link link-scroll btn btn-primary text-white"
+                            href="{{route('admin.home')}}">Dashboard</a>
                         @break
                         @case(App\Models\User::USER_ROLES['GENERAL'])
-                        <a class="nav-link link-scroll btn btn-primary" href="{{route('genreal.home')}}">Dashboard</a>
+                        <a class="nav-link link-scroll btn btn-primary text-white"
+                            href="{{route('genreal.home')}}">Dashboard</a>
                         @break
                         @case(App\Models\User::USER_ROLES['MODERATOR'])
-                        <a class="nav-link link-scroll btn btn-primary" href="{{route('moderator.home')}}">Dashboard</a>
+                        <a class="nav-link link-scroll btn btn-primary text-white"
+                            href="{{route('moderator.home')}}">Dashboard</a>
                         @break
                         @case(App\Models\User::USER_ROLES['TRANSLATOR'])
-                        <a class="nav-link link-scroll btn btn-primary"
+                        <a class="nav-link link-scroll btn btn-primary text-white"
                             href="{{route('translator.home')}}">Dashboard</a>
                         @break
                         @default
                         @endswitch
                     </li>
+                    <li class="nav-item px-1">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button class="nav-link link-scroll btn" type="Submit">Logout</button>
+                        </form>
+                    </li>
                     @else
                     <li class="nav-item px-1">
-                        <a class="nav-link link-scroll btn btn-primary" href="{{route('register')}}">Sign Up</a>
+                        <a class="nav-link link-scroll btn btn-primary text-white" href="{{route('register')}}">Sign
+                            Up</a>
                     </li>
                     <li class="nav-item px-1">
                         <a class="nav-link link-scroll" href="{{route('login')}}">Login</a>
