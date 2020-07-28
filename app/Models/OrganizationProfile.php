@@ -21,7 +21,8 @@ class OrganizationProfile extends Model
         'longitude',
         'digitally_identified_user',
         'alternative_identified_user',
-        'user_id'
+        'user_id',
+        'birth_year', 'birth_month', 'birth_day', 'profession', 'mobile_phone', 'govt_identification', 'status'
     ];
 
     /**

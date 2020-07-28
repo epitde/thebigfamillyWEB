@@ -122,7 +122,7 @@
             $('#conf_password_msg').html("<strong>Password Mismatch</strong>");
             pwd_valid = false;
         } else if (password.val() == password2.val()) {
-            $('#password-confirm').addClass("is-valid").removeClass("is-invalid");
+            $('#conf_password').removeClass("is-invalid").addClass("is-valid");
             $('#conf_password_msg').removeClass("text-danger").addClass("text-success");
             $('#conf_password_msg').html("<strong>Password Matched</strong>");
             pwd_valid = true;
