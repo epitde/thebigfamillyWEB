@@ -50,6 +50,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(GeneralProfile::class);
     }
 
+    public function organizationProfile()
+    {
+        return $this->hasOne('App\Models\OrganizationProfile', 'user_id');
+    }
+
+    public function generalProfile()
+    {
+        return $this->hasOne('App\Models\GeneralProfile', 'user_id');
+    }
+
     public function language()
     {
         return $this->hasMany('App\Models\Language', 'user_id');

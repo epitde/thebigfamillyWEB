@@ -16,40 +16,40 @@
                     <li class="nav-item px-1"><a class="nav-link link-scroll" href="#services">Services</a></li>
                     <li class="nav-item px-1"><a class="nav-link link-scroll" href="#testimonials">Testimonials</a></li>
                     @if (Auth::user())
-                    <li class="nav-item px-1">
+                    <li class="nav-item px-2">
                         @switch(Auth::user()->user_role)
                         @case(App\Models\User::USER_ROLES['ADMIN'])
-                        <a class="nav-link link-scroll btn btn-primary text-white"
+                        <a class="nav-link link-scroll btn btn-outline-primary"
                             href="{{route('admin.home')}}">Dashboard</a>
                         @break
                         @case(App\Models\User::USER_ROLES['GENERAL'])
-                        <a class="nav-link link-scroll btn btn-primary text-white"
+                        <a class="nav-link link-scroll btn btn-outline-primary"
                             href="{{route('genreal.home')}}">Dashboard</a>
                         @break
                         @case(App\Models\User::USER_ROLES['MODERATOR'])
-                        <a class="nav-link link-scroll btn btn-primary text-white"
+                        <a class="nav-link link-scroll btn btn-outline-primary"
                             href="{{route('moderator.home')}}">Dashboard</a>
                         @break
                         @case(App\Models\User::USER_ROLES['TRANSLATOR'])
-                        <a class="nav-link link-scroll btn btn-primary text-white"
+                        <a class="nav-link link-scroll btn btn-outline-primary"
                             href="{{route('translator.home')}}">Dashboard</a>
                         @break
                         @default
                         @endswitch
                     </li>
-                    <li class="nav-item px-1">
+                    <li class="nav-item px-2">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button class="nav-link link-scroll btn" type="Submit">Logout</button>
+                            <button class="nav-link link-scroll btn btn-outline-primary" type="Submit">Logout</button>
                         </form>
                     </li>
                     @else
-                    <li class="nav-item px-1">
-                        <a class="nav-link link-scroll btn btn-primary text-white" href="{{route('register')}}">Sign
+                    <li class="nav-item px-2">
+                        <a class="nav-link link-scroll btn btn-outline-primary" href="{{route('register')}}">Sign
                             Up</a>
                     </li>
-                    <li class="nav-item px-1">
-                        <a class="nav-link link-scroll btn" href="{{route('login')}}">Login</a>
+                    <li class="nav-item px-2">
+                        <a class="nav-link link-scroll btn btn-outline-primary" href="{{route('login')}}">Login</a>
                     </li>
                     @endif
 

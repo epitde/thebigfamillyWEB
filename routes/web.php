@@ -44,16 +44,17 @@ Route::prefix('/general')->namespace('General')->group(function () {
     Route::get('/', 'DashboardController@index')->name('general.home');
 });
 
-Route::prefix('/')->namespace('API\Lang')->group(function () {
-    Route::get('/translate/{short_code}', 'TranslateController@index')->name('api.translate');
-    Route::get('/edit/translate', 'TranslateController@editJsonFile')->name('api.translate.edit');
+Route::prefix('/')->namespace('Translate')->group(function () {
+    Route::get('/translate/{short_code}', 'TranslationController@index')->name('api.translate');
+    Route::get('/edit/translate', 'TranslationController@editJsonFile')->name('api.translate.edit');
 });
 
 Route::prefix('/')->namespace('PublicArea')->group(function () {
 
     Route::get('/', 'HomeController@index')->name('public.home');
 
-    Route::get('/verification', 'VerificationController@index')->name('verification.home');
+    Route::get('/verification/{short_code}', 'VerificationController@index')->name('verification.home');
+    Route::get('/verification/form/{short_code}', 'VerificationController@formView')->name('verification.form');
 
     Route::get('emails/reject/request/{user_id}/{language_id}', 'HomeController@rejectRequest')->name('translator-reject-request');
 });
