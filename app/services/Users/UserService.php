@@ -107,4 +107,16 @@ class UserService
 
         $this->delete($id);
     }
+
+    public function updateProfileType($data)
+    {
+        $user = $this->get($data['user_id']);
+
+        if (array_key_exists('profile_type', $data)) {
+            $user->profile_type = $data['profile_type'];
+            $user->save();
+        }
+
+        return $user;
+    }
 }

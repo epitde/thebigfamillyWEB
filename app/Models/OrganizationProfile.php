@@ -22,7 +22,7 @@ class OrganizationProfile extends Model
         'digitally_identified_user',
         'alternative_identified_user',
         'user_id',
-        'birth_year', 'birth_month', 'birth_day', 'profession', 'mobile_phone', 'govt_identification', 'status'
+        'birth_year', 'birth_month', 'birth_day', 'profession', 'mobile_phone', 'govt_identification', 'status', 'city', 'country'
     ];
 
     /**

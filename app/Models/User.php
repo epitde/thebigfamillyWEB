@@ -13,13 +13,15 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, Notifiable, HasRoles;
 
     const USER_ROLES = ['ADMIN' => 1, 'GENERAL' => 2, 'MODERATOR' => 3, 'TRANSLATOR' => 4];
+    const PROFILE_TYPE = ['GENERAL' => 1, 'ORGANIZATIONAL' => 2];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'email', 'password', 'type', 'user_role', 'nick_name', 'is_verified'
+        'name', 'surname', 'email', 'password', 'type', 'user_role', 'nick_name', 'is_verified', 'profile_type'
     ];
 
     /**

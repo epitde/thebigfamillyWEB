@@ -180,7 +180,8 @@ return [
         App\Providers\LanguageServiceProvider::class,
         App\Providers\MailServiceProvider::class,
         App\Providers\UserServiceProvider::class,
-
+        App\Providers\OrganizationalProfileServiceProvider::class,
+        App\Providers\GeneralProfileServiceProvider::class,
     ],
 
     /*
@@ -235,7 +236,8 @@ return [
         'MailFacade' => App\facade\MailFacade::class,
         'UserFacade' => App\facade\UserFacade::class,
         'LanguageFacade' => App\facade\LanguageFacade::class,
-
+        'OrganizationalProfileFacade' => App\facade\OrganizationalProfileFacade::class,
+        'GeneralProfileFacade' => App\facade\GeneralProfileFacade::class,
     ],
 
 ];

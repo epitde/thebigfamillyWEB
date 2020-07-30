@@ -7,7 +7,8 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        <form action="" method="post" id="configurationform">
+                        <form action="{{route('verification.form.submit', $language->short_code)}}" method="post"
+                            id="verificationForm">
                             @csrf
                             <div id="jquery-steps">
                                 <h3>Profile Selection</h3>
@@ -19,15 +20,21 @@
                                                         profile
                                                         type</strong></span><br><br>
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="gen_prof" name="prof_type"
-                                                        class="custom-control-input" value="gen">
+                                                    <input type="radio" id="gen_prof" name="profile_type"
+                                                        class="custom-control-input"
+                                                        value="{{\App\Models\User::PROFILE_TYPE['GENERAL']}}"
+                                                        {{Auth::user()->profile_type == \App\Models\User::PROFILE_TYPE['GENERAL']?'checked' :''}}
+                                                        {{$profile ? 'disabled':''}}>
                                                     <label class="custom-control-label" for="gen_prof">
                                                         General Profile
                                                     </label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio" id="org_prof" name="prof_type"
-                                                        class="custom-control-input" value="org">
+                                                    <input type="radio" id="org_prof" name="profile_type"
+                                                        class="custom-control-input"
+                                                        value="{{\App\Models\User::PROFILE_TYPE['ORGANIZATIONAL']}}"
+                                                        {{Auth::user()->profile_type == \App\Models\User::PROFILE_TYPE['ORGANIZATIONAL']?'checked' :''}}
+                                                        {{$profile ? 'disabled':''}}>
                                                     <label class="custom-control-label" for="org_prof">
                                                         Organizational Profile
                                                     </label>
@@ -37,26 +44,37 @@
                                         </div>
                                     </div>
                                 </section>
-                                <h3>Fill Details</h3>
+                                <h3>Personal Details</h3>
                                 <section>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="my-input">Name</label>
-                                                <input class="form-control" type="text" name="name"
-                                                    value="{{Auth::user()->name}}&nbsp;{{Auth::user()->surname}}"
-                                                    required>
+                                                <input class="form-control" type="text" name="first_name"
+                                                    value="{{Auth::user()->name}}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
-                                            {{-- <label for="my-input">Date of Birth</label> --}}
+                                            <div class="form-group">
+                                                <label for="my-input">Lastname</label>
+                                                <input class="form-control" type="text" name="last_name"
+                                                    value="{{Auth::user()->surname}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <label for="my-input">Date of Birth</label>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for=""><b>Year</b> </label>
-                                                        <select class="form-control" name="birth_year" id="birth_year"
-                                                            required>
-                                                            <option value=""></option>
+                                                        <select class="form-control" name="birth_year" id="birth_year">
+                                                            <option></option>
+                                                            @foreach($dates->getPastYears(90,\Carbon\Carbon::now()->subYears(16)->format('Y'))
+                                                            as $year_id=> $year_name)
+                                                            <option
+                                                                {{ $profile ? $profile->birth_year==$year_id?'selected':'':''}}
+                                                                value="{{ $year_id }}">{{ $year_name }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -65,7 +83,12 @@
                                                         <label for="signal_text"><b>Month</b> </label>
                                                         <select class="form-control" name="birth_month"
                                                             id="birth_month">
-                                                            <option value=""></option>
+                                                            <option></option>
+                                                            @foreach ($dates->getMonths() as $month_id => $month_name)
+                                                            <option
+                                                                {{ $profile ? $profile->birth_month==$month_id?'selected':'':''}}
+                                                                value="{{ $month_id }}">{{ $month_name }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -73,30 +96,75 @@
                                                     <div class="form-group">
                                                         <label for="signal_text "><b>Day</b> </label>
                                                         <select class="form-control" name="birth_day" id="birth_day">
-                                                            <option value=""></option>
+                                                            <option></option>
+                                                            @foreach ($dates->getDays() as $day_id => $day_name)
+                                                            <option
+                                                                {{ $profile ? $profile->birth_day==$day_name?'selected':'':''}}
+                                                                value="{{ $day_id }}">{{ $day_name }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row" style="margin-top: -16px;">
                                                 <div class="col-md">
-                                                    <span class="text-danger"><small id="end_date_err"></small></span>
+                                                    <small class="date_err text-danger"></small>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mt-3">
+                                            <div class="form-group">
+                                                <label for="my-input">Profession</label>
+                                                <input class="form-control" type="text" name="profession"
+                                                    value="{{ $profile ? $profile->profession:''}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mt-3">
+                                            <div class="form-group">
+                                                <label for="my-input">Government Identification Number</label>
+                                                <input class="form-control" type="text" name="govt_identification"
+                                                    value="{{ $profile ? $profile->govt_identification:''}}" required>
                                             </div>
                                         </div>
                                     </div>
                                 </section>
-                                <h3>Preview Details</h3>
+                                <h3>Contact Details</h3>
                                 <section>
-                                    <div class="form-group m-4">
-                                        <div class="form-group">
-                                            <label for="my-input" class="mb-4 mt-3"><b> Please select your monthly
-                                                    withdrawal
-                                                    amount:
-                                                    <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="right"
-                                                        title="This is the portion of your winnings that will be recommended for withdrawal every month. The lower amount you withdraw, the more capital you have for each subsequent month. Recommended withdrawal amount is highlighted in green.">
-                                                    </i></b></label>
-                                            <input id="monthly_withdrawal" type="text" name="monthly_withdrawal_amount"
-                                                required>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="my-input">Street</label>
+                                                <input class="form-control" type="text" name="main_address"
+                                                    value="{{$profile ? $profile->main_address:''}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="my-input">City</label>
+                                                <input class="form-control" type="text" name="city"
+                                                    value="{{$profile ? $profile->city:''}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="my-input">Country</label>
+                                                <input class="form-control" type="text" name="country"
+                                                    value="{{$profile ? $profile->country:''}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="my-input">Mobile Phone</label>
+                                                <input class="form-control" type="text" name="mobile_phone"
+                                                    value="{{$profile ? $profile->mobile_phone:''}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="my-input">Home Phone <small>(optional)</small> </label>
+                                                <input class="form-control" type="text" name="main_phone"
+                                                    value="{{$profile ? $profile->main_phone:''}}">
+                                            </div>
                                         </div>
                                     </div>
                                 </section>
@@ -126,7 +194,7 @@
             placeholder: ''
         });
     });
-    var form = $("#configurationform");
+    var form = $("#verificationForm");
 
     $('#jquery-steps').steps({
         headerTag: "h3",
@@ -137,13 +205,30 @@
             }
             if (currentIndex == 0) {
                 $('.type_err').html('');
-                let value = $('input[name="prof_type"]:checked').val();
+                let value = $('input[name="profile_type"]:checked').val();
 
                 if (!value) {
                     $('.type_err').html('Select one of the above');
                     return false;
                 }
             }
+
+            if (currentIndex == 1) {
+                $('.date_err').html('');
+                let birth_year = $('#birth_year :selected').text();
+                let birth_month = $('#birth_month :selected').text();
+                let birth_day = $('#birth_day :selected').text();
+
+                if (birth_year == '' || birth_month == '' || birth_day == '') {
+                    $('.date_err').html('These fields are required');
+                    if (form.length == 1) {
+                        form.validate().settings.ignore = ":disabled,:hidden";
+                        return form.valid();
+                    }
+                    return false;
+                }
+            }
+
             if (form.length == 1) {
                 form.validate().settings.ignore = ":disabled,:hidden";
                 return form.valid();
@@ -153,13 +238,12 @@
         onFinishing: function (event, currentIndex) {
             if (form.length == 1) {
                 form.validate().settings.ignore = ":disabled";
-                return
-                form.valid();
+                return form.valid();
             }
             return true;
         },
         onFinished: function (event, currentIndex) {
-            $("#configurationform").submit();
+            $("#verificationForm").submit();
         }
     });
 
