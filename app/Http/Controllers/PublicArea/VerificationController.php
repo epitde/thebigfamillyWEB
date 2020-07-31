@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Traits\DatesTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class VerificationController extends Controller
 {
@@ -51,9 +52,9 @@ class VerificationController extends Controller
         $user = UserFacade::updateProfileType($data);
 
         if ($user->profile_type == User::PROFILE_TYPE['GENERAL']) {
-            GeneralProfileFacade::create($data);
+            GeneralProfileFacade::createProfile($user, $data);
         } else if ($user->profile_type == User::PROFILE_TYPE['ORGANIZATIONAL']) {
-            OrganizationalProfileFacade::create($data);
+            OrganizationalProfileFacade::createProfile($user, $data);
         }
 
         return redirect(route('verification.form.preview', $short_code));
@@ -68,5 +69,21 @@ class VerificationController extends Controller
         $response['profile'] = Auth::user()->generalProfile ? Auth::user()->generalProfile : Auth::user()->organizationProfile;
 
         return view('publicArea.pages.verification.preview-form')->with($response);
+    }
+
+    public function downloadForm($user_id, $short_code)
+    {
+        $data['language'] = LanguageFacade::getByShortCode($short_code);
+
+        $data['language_json'] = LanguageFacade::getJsonByShortCode($short_code);
+
+        $user = UserFacade::get($user_id);
+        $data['profile'] = $user->generalProfile ? $user->generalProfile : $user->organizationProfile;
+
+        return view('publicArea.pages.verification.assets.form-content-pdf')->with($data);
+
+        $pdf = PDF::loadView('publicArea.pages.verification.assets.form-content-pdf', $data);
+
+        return $pdf->download('verification_form.pdf');
     }
 }

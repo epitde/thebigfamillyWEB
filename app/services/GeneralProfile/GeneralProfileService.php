@@ -58,4 +58,17 @@ class GeneralProfileService
         //convert object attributes to array and merge with updated array
         return array_merge($general_profile->toArray(), $data);
     }
+
+    public function createProfile($user, $data)
+    {
+        $profile = $user->generalProfile;
+
+        if ($profile) {
+            $this->update($profile, $data);
+        } else {
+            $profile = $this->create($data);
+        }
+
+        return $profile;
+    }
 }
