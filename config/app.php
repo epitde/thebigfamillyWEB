@@ -176,11 +176,14 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\ImageServiceProvider::class,
         App\Providers\LanguageServiceProvider::class,
         App\Providers\MailServiceProvider::class,
         App\Providers\UserServiceProvider::class,
-
+        App\Providers\OrganizationalProfileServiceProvider::class,
+        App\Providers\GeneralProfileServiceProvider::class,
+        App\Providers\UserDocumentServiceProvider::class,
     ],
 
     /*
@@ -231,11 +234,14 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'ImageFacade' => App\facade\ImageFacade::class,
         'MailFacade' => App\facade\MailFacade::class,
         'UserFacade' => App\facade\UserFacade::class,
         'LanguageFacade' => App\facade\LanguageFacade::class,
-
+        'OrganizationalProfileFacade' => App\facade\OrganizationalProfileFacade::class,
+        'GeneralProfileFacade' => App\facade\GeneralProfileFacade::class,
+        'UserDocumentFacade' => App\facade\UserDocumentFacade::class,
     ],
 
 ];

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class GeneralProfile extends Model
 {
+    const STATUS = ['SUBMITTED' => 1, 'COMPLETED' => 0];
+
     protected $table = "general_profile";
     /**
      * @var string[]
@@ -21,7 +23,8 @@ class GeneralProfile extends Model
         'longitude',
         'digitally_identified_user',
         'alternative_identified_user',
-        'user_id'
+        'user_id',
+        'birth_year', 'birth_month', 'birth_day', 'profession', 'mobile_phone', 'govt_identification', 'status', 'city', 'country'
     ];
 
     /**

@@ -1,51 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-        {{-- @yield('title') --}}
-    </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-        name='viewport' />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Family App | landing</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
 
-    {{-- Load CSS files --}}
-    {{-- @include('general.includes.css') --}}
-
+    @include('publicArea.includes.css')
 </head>
 
 <body>
-    <div class="wrapper ">
+    @include('publicArea.includes.navbar')
 
-        {{-- Load Sidebar --}}
-        {{-- @include('general.includes.sidebar') --}}
+    @yield('content')
+    <a class="scropll-top-btn" id="scrollTop" href="#"><i class="fas fa-long-arrow-alt-up"></i></a>
 
-        <div class="main-panel">
+    @include('publicArea.includes.footer')
 
-            {{-- Load Navbar --}}
-            {{-- @include('general.includes.navbar') --}}
-
-            <div class="content" style="min-height:80vh;">
-                {{-- Fetch Content --}}
-                {{-- @yield('content') --}}
-                <a href="{{route('login')}}">Login</a>
-                <br>
-                <a href="{{route('register')}}">Register</a>
-            </div>
-
-            {{-- Load Foooter --}}
-            {{-- @include('general.includes.footer') --}}
-
-        </div>
-
-    </div>
-
-    {{-- Load JS files --}}
-    {{-- @include('general.includes.js') --}}
-
+    @include('publicArea.includes.js')
 </body>
 
 </html>
