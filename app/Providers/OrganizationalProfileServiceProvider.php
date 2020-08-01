@@ -14,7 +14,7 @@ class OrganizationalProfileServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('orgnizationalProfileService', function () {
+        $this->app->bind('organizationalProfileService', function () {
 
             return new OrganizationalProfileService();
         });

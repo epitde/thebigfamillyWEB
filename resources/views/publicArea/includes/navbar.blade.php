@@ -24,7 +24,7 @@
                         @break
                         @case(App\Models\User::USER_ROLES['GENERAL'])
                         <a class="nav-link link-scroll btn btn-outline-primary"
-                            href="{{route('genreal.home')}}">Dashboard</a>
+                            href="{{route('general.home')}}">Dashboard</a>
                         @break
                         @case(App\Models\User::USER_ROLES['MODERATOR'])
                         <a class="nav-link link-scroll btn btn-outline-primary"

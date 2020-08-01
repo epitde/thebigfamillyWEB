@@ -71,8 +71,9 @@ class VerificationController extends Controller
         return view('publicArea.pages.verification.preview-form')->with($response);
     }
 
-    public function downloadForm($user_id, $short_code)
+    public function downloadForm($user_id, $short_code, $count)
     {
+        $data['count'] = $count;
         $data['language'] = LanguageFacade::getByShortCode($short_code);
 
         $data['language_json'] = LanguageFacade::getJsonByShortCode($short_code);
@@ -80,9 +81,9 @@ class VerificationController extends Controller
         $user = UserFacade::get($user_id);
         $data['profile'] = $user->generalProfile ? $user->generalProfile : $user->organizationProfile;
 
-        return view('publicArea.pages.verification.assets.form-content-pdf')->with($data);
+        // return view('publicArea.pages.verification.assets.form-content-pdf')->with($data);
 
-        $pdf = PDF::loadView('publicArea.pages.verification.assets.form-content-pdf', $data);
+        $pdf = PDF::loadView('publicArea.pages.verification.assets.form-content', $data);
 
         return $pdf->download('verification_form.pdf');
     }

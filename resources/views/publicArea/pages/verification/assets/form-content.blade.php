@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div id="form-pdf" class="row justify-content-center">
     <div class="col-lg-8">
         <div class="card">
             <div class="card-body">
@@ -17,7 +17,7 @@
                                         <label for="my-input">Full Name:</label>
                                     </div>
                                     <div class="col-lg">
-                                        <input class="form-control" type="text" name="first_name"
+                                        <input class="form-control" type="text" id="first_name"
                                             value="{{$profile->name}}" readonly>
                                     </div>
                                 </div>
@@ -30,7 +30,7 @@
                                         <label for="my-input">Date of Birth:</label>
                                     </div>
                                     <div class="col-lg">
-                                        <input class="form-control" type="text"
+                                        <input class="form-control" type="text" id="dob"
                                             value="{{$profile->birth_day}}/{{$profile->birth_month}}/{{$profile->birth_year}}"
                                             readonly>
                                     </div>
@@ -44,8 +44,8 @@
                                         <label for="my-input">Profession:</label>
                                     </div>
                                     <div class="col-lg">
-                                        <input class="form-control" type="text" value="{{$profile->profession}}"
-                                            readonly>
+                                        <input id="profession" class="form-control" type="text"
+                                            value="{{$profile->profession}}" readonly>
                                     </div>
                                 </div>
                             </div>

@@ -57,7 +57,7 @@ Route::prefix('/')->namespace('PublicArea')->group(function () {
     Route::get('/verification/form/{short_code}', 'VerificationController@formView')->name('verification.form');
     Route::post('/verification/form/submit/{short_code}', 'VerificationController@submitForm')->name('verification.form.submit');
     Route::get('/verification/preview/form/{short_code}', 'VerificationController@previewForm')->name('verification.form.preview');
-    Route::get('/verification/download/form/{user_id}/{short_code}', 'VerificationController@downloadForm')->name('verification.form.download');
+    Route::get('/verification/download/form/{user_id}/{short_code}/{count}', 'VerificationController@downloadForm')->name('verification.form.download');
 
     Route::get('emails/reject/request/{user_id}/{language_id}', 'HomeController@rejectRequest')->name('translator-reject-request');
 });
