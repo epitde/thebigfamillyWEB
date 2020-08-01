@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PublicArea;
 use App\facade\GeneralProfileFacade;
 use App\facade\LanguageFacade;
 use App\facade\OrganizationalProfileFacade;
+use App\facade\UserDocumentFacade;
 use App\facade\UserFacade;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -71,20 +72,21 @@ class VerificationController extends Controller
         return view('publicArea.pages.verification.preview-form')->with($response);
     }
 
-    public function downloadForm($user_id, $short_code, $count)
+    public function uploadFormView($short_code)
     {
-        $data['count'] = $count;
-        $data['language'] = LanguageFacade::getByShortCode($short_code);
+        $response['language'] = LanguageFacade::getByShortCode($short_code);
 
-        $data['language_json'] = LanguageFacade::getJsonByShortCode($short_code);
+        $response['language_json'] = LanguageFacade::getJsonByShortCode($short_code);
 
-        $user = UserFacade::get($user_id);
-        $data['profile'] = $user->generalProfile ? $user->generalProfile : $user->organizationProfile;
+        $response['profile'] = Auth::user()->generalProfile ? Auth::user()->generalProfile : Auth::user()->organizationProfile;
 
-        // return view('publicArea.pages.verification.assets.form-content-pdf')->with($data);
+        return view('publicArea.pages.verification.form-upload')->with($response);
+    }
 
-        $pdf = PDF::loadView('publicArea.pages.verification.assets.form-content', $data);
+    public function uploadForm(Request $request, $short_code)
+    {
+        UserDocumentFacade::uploadForms(Auth::user()->id, $request);
 
-        return $pdf->download('verification_form.pdf');
+        return redirect(route('verification.home', $short_code));
     }
 }

@@ -183,6 +183,7 @@ return [
         App\Providers\UserServiceProvider::class,
         App\Providers\OrganizationalProfileServiceProvider::class,
         App\Providers\GeneralProfileServiceProvider::class,
+        App\Providers\UserDocumentServiceProvider::class,
     ],
 
     /*
@@ -240,6 +241,7 @@ return [
         'LanguageFacade' => App\facade\LanguageFacade::class,
         'OrganizationalProfileFacade' => App\facade\OrganizationalProfileFacade::class,
         'GeneralProfileFacade' => App\facade\GeneralProfileFacade::class,
+        'UserDocumentFacade' => App\facade\UserDocumentFacade::class,
     ],
 
 ];

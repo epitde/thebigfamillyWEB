@@ -137,12 +137,12 @@
                             class="col-lg-6 text-left mt-5 pt-3 pr-5
                                             {{Auth::user()->profile_type == app\Models\User::PROFILE_TYPE['GENERAL']?'hidden':''}}">
                             <div class="form-group text-center">
-                                <input class="form-control" type="text" name="first_name">
-                                <label class="mb-5" for="my-input">Orgnization name 1</label>
                                 <div class="extra-field">
                                 </div>
+                                <input id="signing-field-control" class="form-control" type="text">
+                                <span id="signing-field-err"></span>
                                 <a id="add-field" class="btn btn-sm btn-info py-0 mt-1" href="javascript:void(0)"
-                                    onclick="addSignField()" title="Add Extra Signing Field">
+                                    onclick="addSignField()" title="Add Organization Signing Field">
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <a id="remove-field" class="btn btn-sm btn-info py-0 mt-1 d-none"

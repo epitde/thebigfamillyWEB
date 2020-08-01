@@ -9,7 +9,8 @@
             <div class="col-lg-8">
                 <div class="row mt-3">
                     <div class="col-lg-6 text-center">
-                        <a class="btn btn-dark" href="{{route('verification.form', $language->short_code)}}">
+                        <a class="btn btn-dark {{Auth::user()->generalProfile &&  Auth::user()->generalProfile->status|| Auth::user()->organizationProfile &&  Auth::user()->organizationProfile->status ? 'd-none' : ''}}"
+                            href="{{route('verification.form', $language->short_code)}}">
                             <i class="fa fa-arrow-left"></i>
                             Edit Details
                         </a>
@@ -48,7 +49,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
 <script>
-    let count = 1;
+    let count = 0;
     $(document).ready(function () {
         $('select').select2({
             theme: 'bootstrap',
@@ -57,27 +58,41 @@
     });
 
     function addSignField() {
-        $('#add-field').addClass('d-none');
-        $('#remove-field').removeClass('d-none');
+        let value = $('#signing-field-control').val();
+        $('#signing-field-err').html('')
+        if (value) {
+            count++;
+            $('#remove-field').removeClass('d-none');
 
-        let html = '<input class="form-control" type="text">' +
-            '<label for="my-input">Orgnization name 2</label>'
+            let html = '<div class="field' + count + '"><input class="form-control" type="text">' +
+                '<label for="my-input">' + value + '</label></div>'
 
-        $('.extra-field').html(html);
-        count++;
+            $('.extra-field').append(html);
+            $('#signing-field-control').val('');
+            if (count == 2) {
+                $('#add-field').addClass('d-none');
+                $('#signing-field-control').addClass('d-none');
+            }
+        } else {
+            $('#signing-field-err').html('<small class="text-danger">Field Cannot be empty</small><br>')
+        }
     }
 
     function removeSignField() {
-        $('#remove-field').addClass('d-none');
+        $('#signing-field-control').removeClass('d-none');
         $('#add-field').removeClass('d-none');
 
-        $('.extra-field').html('');
+        $('.field' + count).html('');
         count--;
+        if (count == 0) {
+            $('#remove-field').addClass('d-none');
+        }
     }
 
     function downloadPdf(user_id, short_code) {
         $('#add-field').addClass('d-none');
         $('#remove-field').addClass('d-none');
+        $('#signing-field-control').removeClass('d-none');
 
         domtoimage.toPng(document.getElementById('form-pdf'))
             .then(function (blob) {
@@ -86,7 +101,6 @@
                 pdf.addImage(blob, 'PNG', 0, 0, $('#form-pdf').width(), $('#target').height());
                 pdf.save("verification_form.pdf");
             });
-        // window.location.href = '{{ url("verification/download/form") }}/' + user_id + '/' + short_code + '/' + count;
     }
 
 </script>

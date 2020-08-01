@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class GeneralProfile extends Model
 {
+    const STATUS = ['SUBMITTED' => 1, 'COMPLETED' => 0];
+
     protected $table = "general_profile";
     /**
      * @var string[]

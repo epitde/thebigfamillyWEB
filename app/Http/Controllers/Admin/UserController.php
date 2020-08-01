@@ -53,4 +53,11 @@ class UserController extends PermissionController
 
         return redirect()->back()->with('alert-success', "User deleted successfully");
     }
+
+    public function changeUserVerification($id)
+    {
+        UserFacade::changeUserVerification($id);
+
+        return redirect()->back()->with('alert-success', "User verification changed successfully");
+    }
 }

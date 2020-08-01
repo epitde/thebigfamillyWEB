@@ -119,4 +119,12 @@ class UserService
 
         return $user;
     }
+
+    public function changeUserVerification($id)
+    {
+        $user = $this->get($id);
+
+        $user->is_verified = !($user->is_verified);
+        $user->save();
+    }
 }

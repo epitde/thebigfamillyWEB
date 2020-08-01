@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrganizationProfile extends Model
 {
+    const STATUS = ['SUBMITTED' => 1, 'COMPLETED' => 0];
+
     protected $table = "organization_profile";
     /**
      * @var string[]
