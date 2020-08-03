@@ -34,7 +34,7 @@
                             <div class="col-lg-8">
                                 <div class="form-group">
                                     <label for="">Default Translator</label>
-                                    <select class="form-control" name="user_id" id="user_id" required>
+                                    <select class="form-control" name="user_id" id="user_id">
                                         <option></option>
                                         @foreach ($users as $key => $user)
                                         <option value="{{ $user->id }}">

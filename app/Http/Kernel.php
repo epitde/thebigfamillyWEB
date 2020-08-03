@@ -71,6 +71,7 @@ class Kernel extends HttpKernel
         'TranslatorValidation' => \App\Http\Middleware\TranslatorValidation::class,
         'GeneralValidation' => \App\Http\Middleware\GeneralValidation::class,
         'ModeratorValidation' => \App\Http\Middleware\ModeratorValidation::class,
+        'VerificationValidation' => \App\Http\Middleware\VerificationValidation::class,
     ];
 
     /**

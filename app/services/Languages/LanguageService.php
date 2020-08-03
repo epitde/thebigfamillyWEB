@@ -177,4 +177,11 @@ class LanguageService
         }
         return ($completed_count / $total) * 100;
     }
+
+    public function getJsonByShortCode($short_code)
+    {
+        $jsonString = file_get_contents(base_path('resources/Applang/' . $short_code . '.json'));
+
+        return json_decode($jsonString, true);
+    }
 }

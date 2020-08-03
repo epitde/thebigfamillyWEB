@@ -30,6 +30,7 @@ Route::prefix('/admin')->namespace('Admin')->group(function () {
     Route::get('/users/edit/{id}', 'UserController@edit')->name('admin.users.edit');
     Route::post('/users/update', 'UserController@update')->name('admin.users.update');
     Route::get('/users/delete/{id}', 'UserController@delete')->name('admin.users.delete');
+    Route::get('/users/change-verifcation/{id}', 'UserController@changeUserVerification')->name('admin.users.change-verifcation');
 });
 
 Route::prefix('/translator')->namespace('Translator')->group(function () {
@@ -44,14 +45,22 @@ Route::prefix('/general')->namespace('General')->group(function () {
     Route::get('/', 'DashboardController@index')->name('general.home');
 });
 
-Route::prefix('/')->namespace('API\Lang')->group(function () {
-    Route::get('/translate/{short_code}', 'TranslateController@index')->name('api.translate');
-    Route::get('/edit/translate', 'TranslateController@editJsonFile')->name('api.translate.edit');
+Route::prefix('/')->namespace('Translate')->group(function () {
+    Route::get('/translate/{short_code}', 'TranslationController@index')->name('api.translate');
+    Route::get('/edit/translate', 'TranslationController@editJsonFile')->name('api.translate.edit');
 });
 
 Route::prefix('/')->namespace('PublicArea')->group(function () {
 
     Route::get('/', 'HomeController@index')->name('public.home');
+
+    Route::get('/verification/{short_code}', 'VerificationController@index')->name('verification.home');
+    Route::get('/verification/form/{short_code}', 'VerificationController@formView')->name('verification.form');
+    Route::post('/verification/form/submit/{short_code}', 'VerificationController@submitForm')->name('verification.form.submit');
+    Route::get('/verification/preview/form/{short_code}', 'VerificationController@previewForm')->name('verification.form.preview');
+
+    Route::get('/verification/upload/form/{short_code}', 'VerificationController@uploadFormView')->name('verification.form.upload.view');
+    Route::post('/verification/upload/forms/{short_code}', 'VerificationController@uploadForm')->name('verification.forms.upload');
 
     Route::get('emails/reject/request/{user_id}/{language_id}', 'HomeController@rejectRequest')->name('translator-reject-request');
 });
