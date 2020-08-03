@@ -138,13 +138,13 @@
                                         <td>
                                             @switch($user_document->type)
                                             @case(\App\Models\UserDocument::TYPE['VERIFICATION'])
-                                            <span class="badge">Verification Document</span>
+                                            <span>Verification Document</span>
                                             @break
                                             @case(\App\Models\UserDocument::TYPE['GOVT'])
-                                            <span class="badge">Government Issued Document</span>
+                                            <span>Government Issued Document</span>
                                             @break
                                             @default
-                                            <span class="badge">Other Document</span>
+                                            <span>Other Document</span>
                                             @endswitch
                                         </td>
 
