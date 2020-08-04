@@ -56,6 +56,12 @@
                         <strong>Post</strong>
                     </a>
                 </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link" id="pills-verification-tab" data-toggle="pill" href="#pills-verification"
+                        role="tab" aria-controls="pills-verification" aria-selected="false">
+                        <strong>Verification</strong>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -211,6 +217,48 @@
                                             <a id="save_btn_{{$key}}POST" class="btn btn-primary btn-sm"
                                                 href="javascript:void(0)" data-toggle="tooltip" title="Update value"
                                                 onclick="changeData('{{$key}}', 'post_{{$key}}', 'POST')">
+                                                Save
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-verification" role="tabpanel"
+                    aria-labelledby="pills-verification-tab">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">STRING</th>
+                                        <th scope="col" class="{{$language->short_code=="en"?'d-none':''}}">English
+                                            VALUE</th>
+                                        <th scope="col">{{$language->name}} VALUE</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($langData['VERIFICATION'] as $key => $verification)
+                                    <tr>
+                                        <th scope="row">{{$key}}</th>
+                                        <td class="{{$language->short_code=="en"?'d-none':''}}">
+                                            {{$langDataEN['VERIFICATION'][$key]}}
+                                        </td>
+                                        <td>
+                                            <input id="verification_{{$key}}" type="text" class="form-control"
+                                                value="{{$verification}}">
+                                        </td>
+                                        <td>
+                                            <a id="save_btn_{{$key}}VERIFICATION" class="btn btn-primary btn-sm"
+                                                href="javascript:void(0)" data-toggle="tooltip" title="Update value"
+                                                onclick="changeData('{{$key}}', 'verification_{{$key}}',
+                                                'VERIFICATION')">
                                                 Save
                                             </a>
                                         </td>

@@ -1,9 +1,11 @@
 <?php
 
+use App\facade\UserFacade;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
 class AdminUserSeeder extends Seeder
 {
     /**
@@ -13,20 +15,24 @@ class AdminUserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
-            'name' => 'Admin',
-            'surname' => 'Admin',
-            'email' => 'admin@demo.com',
-            'password' => bcrypt('123456'),
-            'type' => 'A'
-        ]);
+        $user = UserFacade::getUserByEmail('admin@demo.com');
 
-        $role = Role::create(['name' => 'Admin']);
+        if (!$user) {
+            $user = User::create([
+                'name' => 'Admin',
+                'surname' => 'Admin',
+                'email' => 'admin@demo.com',
+                'password' => bcrypt('123456'),
+                'type' => 'A'
+            ]);
 
-        $permissions = Permission::pluck('id','id')->all();
+            $role = Role::create(['name' => 'Admin']);
 
-        $role->syncPermissions($permissions);
+            $permissions = Permission::pluck('id', 'id')->all();
 
-        $user->assignRole([$role->id]);
+            $role->syncPermissions($permissions);
+
+            $user->assignRole([$role->id]);
+        }
     }
 }

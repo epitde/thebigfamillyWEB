@@ -11,14 +11,17 @@
                             id="verificationForm">
                             @csrf
                             <div id="jquery-steps">
-                                <h3>Profile Selection</h3>
+                                <h3>{{$language_json['VERIFICATION']["profile_section"]}}</h3>
                                 <section>
                                     <div class="row justify-content-center">
                                         <div class="col-lg-8">
                                             <div class="form-group m-4">
-                                                <span class="mb-5" style="font-size: 1.4rem;"><strong>Select your
-                                                        profile
-                                                        type</strong></span><br><br>
+                                                <span class="mb-5" style="font-size: 1.4rem;">
+                                                    <strong>
+                                                        {{$language_json['VERIFICATION']["profile_type"]}}
+                                                    </strong>
+                                                </span>
+                                                <br><br>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" id="gen_prof" name="profile_type"
                                                         class="custom-control-input"
@@ -26,7 +29,7 @@
                                                         {{Auth::user()->profile_type == \App\Models\User::PROFILE_TYPE['GENERAL']?'checked' :''}}
                                                         {{$profile ? 'disabled':''}}>
                                                     <label class="custom-control-label" for="gen_prof">
-                                                        General Profile
+                                                        {{$language_json['VERIFICATION']["profile_type_1"]}}
                                                     </label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline">
@@ -36,7 +39,7 @@
                                                         {{Auth::user()->profile_type == \App\Models\User::PROFILE_TYPE['ORGANIZATIONAL']?'checked' :''}}
                                                         {{$profile ? 'disabled':''}}>
                                                     <label class="custom-control-label" for="org_prof">
-                                                        Organizational Profile
+                                                        {{$language_json['VERIFICATION']["profile_type_2"]}}
                                                     </label>
                                                 </div>
                                                 <small class="type_err text-danger"></small>
@@ -44,29 +47,31 @@
                                         </div>
                                     </div>
                                 </section>
-                                <h3>Personal Details</h3>
+                                <h3>{{$language_json['VERIFICATION']["personal_details"]}}</h3>
                                 <section>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="my-input">Name</label>
+                                                <label for="my-input">{{$language_json['VERIFICATION']["name"]}}</label>
                                                 <input class="form-control" type="text" name="first_name"
                                                     value="{{Auth::user()->name}}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="my-input">Lastname</label>
+                                                <label
+                                                    for="my-input">{{$language_json['VERIFICATION']["last_name"]}}</label>
                                                 <input class="form-control" type="text" name="last_name"
                                                     value="{{Auth::user()->surname}}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-8">
-                                            <label for="my-input">Date of Birth</label>
+                                            <label for="my-input">{{$language_json['VERIFICATION']["dob"]}}</label>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for=""><b>Year</b> </label>
+                                                        <label for=""><b>{{$language_json['VERIFICATION']["year"]}}</b>
+                                                        </label>
                                                         <select class="form-control" name="birth_year" id="birth_year">
                                                             <option></option>
                                                             @foreach($dates->getPastYears(90,\Carbon\Carbon::now()->subYears(16)->format('Y'))
@@ -80,7 +85,9 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="signal_text"><b>Month</b> </label>
+                                                        <label
+                                                            for="signal_text"><b>{{$language_json['VERIFICATION']["month"]}}</b>
+                                                        </label>
                                                         <select class="form-control" name="birth_month"
                                                             id="birth_month">
                                                             <option></option>
@@ -94,7 +101,9 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="signal_text "><b>Day</b> </label>
+                                                        <label
+                                                            for="signal_text "><b>{{$language_json['VERIFICATION']["day"]}}</b>
+                                                        </label>
                                                         <select class="form-control" name="birth_day" id="birth_day">
                                                             <option></option>
                                                             @foreach ($dates->getDays() as $day_id => $day_name)
@@ -114,54 +123,61 @@
                                         </div>
                                         <div class="col-lg-6 mt-3">
                                             <div class="form-group">
-                                                <label for="my-input">Profession</label>
+                                                <label
+                                                    for="my-input">{{$language_json['VERIFICATION']["profession"]}}</label>
                                                 <input class="form-control" type="text" name="profession"
                                                     value="{{ $profile ? $profile->profession:''}}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mt-3">
                                             <div class="form-group">
-                                                <label for="my-input">Government Identification Number</label>
+                                                <label
+                                                    for="my-input">{{$language_json['VERIFICATION']["govt_id_number"]}}</label>
                                                 <input class="form-control" type="text" name="govt_identification"
                                                     value="{{ $profile ? $profile->govt_identification:''}}" required>
                                             </div>
                                         </div>
                                     </div>
                                 </section>
-                                <h3>Contact Details</h3>
+                                <h3>{{$language_json['VERIFICATION']["contact_details"]}}</h3>
                                 <section>
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label for="my-input">Street</label>
+                                                <label
+                                                    for="my-input">{{$language_json['VERIFICATION']["street"]}}</label>
                                                 <input class="form-control" type="text" name="main_address"
                                                     value="{{$profile ? $profile->main_address:''}}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="my-input">City</label>
+                                                <label for="my-input">{{$language_json['VERIFICATION']["city"]}}</label>
                                                 <input class="form-control" type="text" name="city"
                                                     value="{{$profile ? $profile->city:''}}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="my-input">Country</label>
+                                                <label
+                                                    for="my-input">{{$language_json['VERIFICATION']["country"]}}</label>
                                                 <input class="form-control" type="text" name="country"
                                                     value="{{$profile ? $profile->country:''}}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="my-input">Mobile Phone</label>
+                                                <label
+                                                    for="my-input">{{$language_json['VERIFICATION']["mobile_phone"]}}</label>
                                                 <input class="form-control" type="text" name="mobile_phone"
                                                     value="{{$profile ? $profile->mobile_phone:''}}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="my-input">Home Phone <small>(optional)</small> </label>
+                                                <label
+                                                    for="my-input">{{$language_json['VERIFICATION']["home_phone"]}}<small>({{$language_json['VERIFICATION']["optional"]}})</small>
+                                                </label>
                                                 <input class="form-control" type="text" name="main_phone"
                                                     value="{{$profile ? $profile->main_phone:''}}">
                                             </div>
@@ -208,7 +224,7 @@
                 let value = $('input[name="profile_type"]:checked').val();
 
                 if (!value) {
-                    $('.type_err').html('Select one of the above');
+                    $('.type_err').html("{{$language_json['VERIFICATION']['profile_selection_err']}}");
                     return false;
                 }
             }
@@ -220,7 +236,7 @@
                 let birth_day = $('#birth_day :selected').text();
 
                 if (birth_year == '' || birth_month == '' || birth_day == '') {
-                    $('.date_err').html('These fields are required');
+                    $('.date_err').html("{{$language_json['VERIFICATION']['required_err_msg']}}");
                     if (form.length == 1) {
                         form.validate().settings.ignore = ":disabled,:hidden";
                         return form.valid();

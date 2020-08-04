@@ -2,19 +2,23 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title text-center py-2">Your Verfication Form</h3>
+                <h3 class="card-title text-center py-2">
+                    {{$language_json['VERIFICATION']["your_verification_form"]}}
+                </h3>
                 <hr>
                 <form action="">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="pb-2" style="max-width: max-content;">
-                                <h4>Personal Information</h4>
+                                <h4>
+                                    {{$language_json['VERIFICATION']["personal_details"]}}
+                                </h4>
                                 <hr>
                             </div>
                             <div class="form-group my-2">
                                 <div class="row">
                                     <div class="col-lg-auto">
-                                        <label for="my-input">Full Name:</label>
+                                        <label for="my-input">{{$language_json['VERIFICATION']["full_name"]}}:</label>
                                     </div>
                                     <div class="col-lg">
                                         <input class="form-control" type="text" id="first_name"
@@ -27,7 +31,7 @@
                             <div class="form-group my-2">
                                 <div class="row">
                                     <div class="col-lg-auto">
-                                        <label for="my-input">Date of Birth:</label>
+                                        <label for="my-input">{{$language_json['VERIFICATION']["dob"]}}:</label>
                                     </div>
                                     <div class="col-lg">
                                         <input class="form-control" type="text" id="dob"
@@ -41,7 +45,7 @@
                             <div class="form-group my-2">
                                 <div class="row">
                                     <div class="col-lg-auto">
-                                        <label for="my-input">Profession:</label>
+                                        <label for="my-input">{{$language_json['VERIFICATION']["profession"]}}:</label>
                                     </div>
                                     <div class="col-lg">
                                         <input id="profession" class="form-control" type="text"
@@ -54,7 +58,7 @@
                             <div class="form-group my-2">
                                 <div class="row">
                                     <div class="col-lg-auto">
-                                        <label for="my-input">Identification Number:</label>
+                                        <label for="my-input">{{$language_json['VERIFICATION']["id_number"]}}:</label>
                                     </div>
                                     <div class="col-lg">
                                         <input class="form-control" type="text" name="first_name"
@@ -68,13 +72,13 @@
                     <div class="row mt-4">
                         <div class="col-lg-12">
                             <div class="pb-2" style="max-width: max-content;">
-                                <h4>Contact Information</h4>
+                                <h4>{{$language_json['VERIFICATION']["contact_details"]}}</h4>
                                 <hr>
                             </div>
                             <div class="form-group my-2">
                                 <div class="row">
                                     <div class="col-lg-auto">
-                                        <label for="my-input">Street:</label>
+                                        <label for="my-input">{{$language_json['VERIFICATION']["street"]}}:</label>
                                     </div>
                                     <div class="col-lg">
                                         <input class="form-control" type="text" name="first_name"
@@ -87,7 +91,7 @@
                             <div class="form-group my-2">
                                 <div class="row">
                                     <div class="col-lg-auto">
-                                        <label for="my-input">City:</label>
+                                        <label for="my-input">{{$language_json['VERIFICATION']["city"]}}:</label>
                                     </div>
                                     <div class="col-lg">
                                         <input class="form-control" type="text" value="{{$profile->city}}" readonly>
@@ -99,7 +103,7 @@
                             <div class="form-group my-2">
                                 <div class="row">
                                     <div class="col-lg-auto">
-                                        <label for="my-input">Country:</label>
+                                        <label for="my-input">{{$language_json['VERIFICATION']["country"]}}:</label>
                                     </div>
                                     <div class="col-lg">
                                         <input class="form-control" type="text" value="{{$profile->country}}" readonly>
@@ -111,7 +115,8 @@
                             <div class="form-group my-2">
                                 <div class="row">
                                     <div class="col-lg-auto">
-                                        <label for="my-input">Mobile Number:</label>
+                                        <label
+                                            for="my-input">{{$language_json['VERIFICATION']["mobile_phone"]}}:</label>
                                     </div>
                                     <div class="col-lg">
                                         <input class="form-control" type="text" name="first_name"
@@ -124,7 +129,7 @@
                             <div class="form-group my-2">
                                 <div class="row">
                                     <div class="col-lg-auto">
-                                        <label for="my-input">Home Number:</label>
+                                        <label for="my-input">{{$language_json['VERIFICATION']["home_phone"]}}:</label>
                                     </div>
                                     <div class="col-lg">
                                         <input class="form-control" type="text" name="first_name"
@@ -142,12 +147,13 @@
                                 <input id="signing-field-control" class="form-control" type="text">
                                 <span id="signing-field-err"></span>
                                 <a id="add-field" class="btn btn-sm btn-info py-0 mt-1" href="javascript:void(0)"
-                                    onclick="addSignField()" title="Add Organization Signing Field">
+                                    onclick="addSignField()"
+                                    title="{{$language_json['VERIFICATION']["adding_btn_tooltip"]}}">
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <a id="remove-field" class="btn btn-sm btn-info py-0 mt-1 d-none"
                                     href="javascript:void(0)" onclick="removeSignField()"
-                                    title="Remove Extra Signing Field">
+                                    title="{{$language_json['VERIFICATION']["remove_btn_tooltip"]}}">
                                     <i class="fa fa-minus"></i>
                                 </a>
                             </div>
