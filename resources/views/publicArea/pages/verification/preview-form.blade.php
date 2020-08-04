@@ -12,14 +12,14 @@
                         <a class="btn btn-dark {{Auth::user()->generalProfile &&  Auth::user()->generalProfile->status|| Auth::user()->organizationProfile &&  Auth::user()->organizationProfile->status ? 'd-none' : ''}}"
                             href="{{route('verification.form', $language->short_code)}}">
                             <i class="fa fa-arrow-left"></i>
-                            Edit Details
+                            {{$language_json['VERIFICATION']["edit_details"]}}
                         </a>
                     </div>
                     <div class="col-lg-6 text-center">
                         <a class="btn btn-success" href="javascript:void(0)"
                             onclick="downloadPdf({{Auth::user()->id}}, '{{$language->short_code}}')">
                             <i class="fa fa-arrow-down"></i>
-                            Download Form
+                            {{$language_json['VERIFICATION']["download_form"]}}
                         </a>
                     </div>
                 </div>
@@ -74,7 +74,8 @@
                 $('#signing-field-control').addClass('d-none');
             }
         } else {
-            $('#signing-field-err').html('<small class="text-danger">Field Cannot be empty</small><br>')
+            let err = "{{$language_json['VERIFICATION']['required_error_msg']}}"
+            $('#signing-field-err').html('<small class="text-danger">' + err + '</small><br>')
         }
     }
 
