@@ -25,6 +25,8 @@ class VerificationController extends Controller
 
     public function index($short_code)
     {
+        $response['languages'] = LanguageFacade::getAllLanguages();
+
         $response['language'] = LanguageFacade::getByShortCode($short_code);
 
         $response['language_json'] = LanguageFacade::getJsonByShortCode($short_code);
